@@ -8,17 +8,18 @@ var morgan = require('morgan');
 
 var lionRouter = require('./lions');
 var tigerRouter = require('./tigers');
+var projectRouter = require('./project')
 
 app.use(morgan('dev'))
 app.use(express.static('client'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 // this is called mounting. when ever a req comes in for
-// '/lion' we want to use this router
+// '/projects' we want to use this router
 app.use('/lions', lionRouter);
-app.use('/tigers', tigerRouter);
+app.use('/projects', projectRouter);
 
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res, next) { // handle error
   if (err) {
     res.status(500).send(err);
   }

@@ -14,6 +14,10 @@ The website is about Overview/Add/List view in a single page app.
 
 ## Methodology
 Build the REST API system using express and mongo db.
+We're going to use mocha and chai along with supertest to runt inegration test against our api. Install testing environment:
+```
+npm i -g mocha
+```
 
 ## Plan and Milestone
 Milestone: Website to create project and store project meta data
