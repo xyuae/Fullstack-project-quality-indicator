@@ -50,3 +50,6 @@ Our api will consist of many different components to support the api, authentica
 A model is just a blueprint of waht our resource may look like, just like the blueprints we make before in JSON above.
 
 We can use process.env.NODE_ENV the variable to tell our applicaiton what environment its running in testing, development, or produciton. Depending on the envrionment, we can change things in our app like DB urls or toggle logging. We can also set and reference other env vars. Instead of searching everywhere for these values to change, we can and should create a central location for that config. Then depending on the NODE_ENV we can require another config file and merge the two together so our app can use it.
+
+## Data modeling
+We can use schemas in mongoose to add some structure and validations to our data. Mongo does not need schemas though. We also need some sort of relationships with our data. For example, users creating posts and posts having categories and belonging to users. Mongoose makes this simple.
