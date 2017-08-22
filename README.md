@@ -14,6 +14,10 @@ The website is about Overview/Add/List view in a single page app.
 
 ## Methodology
 Build the REST API system using express and mongo db.
+We're going to use mocha and chai along with supertest to runt inegration test against our api. Install testing environment:
+```
+npm i -g mocha
+```
 
 ## Plan and Milestone
 Milestone: Website to create project and store project meta data
@@ -24,6 +28,10 @@ Milestone: Website to create project and store project meta data
 - 8/28 - 9/8: Querying mongo database and Authentication
 - Milestone: Query and User authentication function from the server.
 
+## TO DO
+- Testing api code
+- Setting up Mongo DB ( install mongoose)
+- npm install nodemon -g
 ## Resource
 - [Cloning a lightweigth yelp website](http://cache.preserve.io/c81nqh7s/)
 - [Note on react](./notes/clone_yelp.md)
