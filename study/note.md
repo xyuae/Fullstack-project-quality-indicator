@@ -44,62 +44,9 @@ Although BDD is principlaly an idea about how software development should be man
 ### IIFE (Immediately-invoked function expression)
 In JavaScript, every function, when invoked, creates a new execution context. Because variables and functions defined within a function may only be accessed inside, but not outside, that context, invoking a function provides a very easy way to create privacy.
 
-```
-// makeCounter函数返回的是一个信的函数
-function makeCounter() {
-	var i = 0;
-	return function() {
-		console.log( ++i );
-	};
-}
+## Organization and config
+Our api will consist of many different components to support the api, authentication, static serving, etc. But what makes up the api? The api is really just a collection of resources with models to define how the resources look, controllers to access to resources, and routes to let the controllers know how to run and to expose our api.
 
-var counter - makeCounter();
-counter();
-counter();
+A model is just a blueprint of waht our resource may look like, just like the blueprints we make before in JSON above.
 
-var counter2 = makeCounter();
-counter2();
-counter2();
-```
-
-## Implement sort using JavaScript
-```
-var arr = [5, 100, 6, 3, -12];
-
-var result = arr.sort((a,b) => {
-	return a-b;
-});
-console. log(result);
-```
-
-```
-function addEvent(element, type, handler){
-	if (element.addEventListener) {
-		element.addEventListener(type, handler, false);
-	} else if (element.attachEvent) {
-		element.attachEvent("on" + type, handler);
-	} else {
-		element["on" + type] = handler;
-	}
-}
-```
-JavaScript object add a trim method
-```
-String.prototype.trim = function() {
-	return this.replace(/^\s+$/g, "");
-}
-```
-
-JavaScript parseQueryString
-```
-function parseQueryString(url) {
-	var result = []
-	var arr = url.split("?")[1].split("&");
-	var len = arr.length;
-	for (var i = 0; i < len; i++) {
-		var arr1 = arr[i].split("=");
-		result[arr1[0]] = arr1[1];
-	}
-	return result;
-}
-```
+We can use process.env.NODE_ENV the variable to tell our applicaiton what environment its running in testing, development, or produciton. Depending on the envrionment, we can change things in our app like DB urls or toggle logging. We can also set and reference other env vars. Instead of searching everywhere for these values to change, we can and should create a central location for that config. Then depending on the NODE_ENV we can require another config file and merge the two together so our app can use it.

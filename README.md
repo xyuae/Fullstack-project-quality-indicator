@@ -28,6 +28,9 @@ Milestone: Website to create project and store project meta data
 - 8/28 - 9/8: Querying mongo database and Authentication
 - Milestone: Query and User authentication function from the server.
 
+## TO DO
+- Testing api code
+
 ## Resource
 - [Cloning a lightweigth yelp website](http://cache.preserve.io/c81nqh7s/)
 - [Note on react](./notes/clone_yelp.md)

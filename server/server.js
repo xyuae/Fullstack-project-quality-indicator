@@ -1,5 +1,4 @@
-// TODO: mount the tigers route with a a new router just for tigers
-// exactly like lions below
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
@@ -10,14 +9,15 @@ var lionRouter = require('./lions');
 var tigerRouter = require('./tigers');
 var projectRouter = require('./project')
 
-app.use(morgan('dev'))
-app.use(express.static('client'));
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+
+app.use(morgan('dev'))  // show http request in consle
+app.use(express.static('client'));  // make client file public
+app.use(bodyParser.urlencoded({extended: true})); // bodyParser middleware
+app.use(bodyParser.json()); // read json middleware
 // this is called mounting. when ever a req comes in for
 // '/projects' we want to use this router
 app.use('/lions', lionRouter);
-app.use('/projects', projectRouter);
+app.use('/projects', projectRouter);    // mount project router
 
 app.use(function(err, req, res, next) { // handle error
   if (err) {
