@@ -123,7 +123,7 @@ var ProjectSchema = new Schema({
 	development organization, configuration management,
 	and design test strategy.
 	*/
-	development_management_status: {
+	development_mastery_status: {
 		score: { type:Number, min: 0, max: 1 },
 		// quality includes embedded software quality plan,
 		//and embedded software activity regularly monitored
@@ -186,8 +186,16 @@ var ProjectSchema = new Schema({
 	}
 	// array of ids from the users
 	author: [{type: Schema.Types.ObjectId, ref: 'user'}],
-
-  	categories: [{type: Schema.Types.ObjectId, ref: 'category'}]
+	// array of ids from the categories
+  	categories: [{type: Schema.Types.ObjectId, ref: 'category'}],
+	// array of project status history
+	history: [{
+		updateAt: { type: Date, required: true },
+		technical_mastery_status: { type:Number, max:1, min: 0 },
+		satey_status: { type:Number, max:1, min: 0 },
+		cyber_status: { type:Number, max:1, min: 0 },
+		development_mastery_status: { type:Number, max:1, min: 0 },
+	}],
 });
 
 module.exports = mongoose.model('project', ProjectSchema);
