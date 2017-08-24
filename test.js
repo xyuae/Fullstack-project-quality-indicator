@@ -3,9 +3,8 @@ var request = require('supertest');   // supertest handle the http request
 var chai = require('chai').expect;    // chai is an assertion library for test
 // Mocha is running the test which gives describe and framework
 
-// TODO: make tests for the other CRUD routes
+// make tests for the other CRUD routes
 // DELETE, UPDATE, PUT, GET ONE
-// to run the test type mocha server/specs.js
 
 describe('[Project]', function(){
   // test get

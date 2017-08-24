@@ -103,3 +103,27 @@ One of the simplest methods that can be called to use this new connection is to 
 Note that the collection method on the database connection doesn't support promises and so a callback function is provided Instead.
 
 And after counting the documents; the application should close the connection with this method:
+Note that then also returns a promise (which is, in turn, resolved or rejected). The returned promise could be created in one of 4 ways:
+1. The funciton explicitly creates and returns a new promise(which will eventualy be resolved or rejected)
+2. The function returns another function call which, in turn, returns a promise (which will eventually be resulted or rejected)
+3. The function returns a value - which is automatically turned into a resolved promise.
+4. The function throws an error - which is automatically turned into a rejected promise.
+In this way, promises can be chained to perform a sequence of events (wher each stp waits on the resolution of the promise from the previous one). Using those 3 methods from db.js, it's now possible to implement a very simple application function:
+That function isn't part of the final applicaiton - the actual code will be covered in the next post - but jump ahead and look at routes/pop.js if you are curious.
+
+It's worth looking at the sampleCollection prototype method as it uses a databse /cursor/. This method fetches a random selection of documents - useful when you want to understand the typical format of the collection's documents.
+
+Note that collection.aggregate doesn't actually access the database - that's why its a syncrhonous call - instead, it returns a cursor. The cursor is then used to read the data from MongoDB by invoking its toArray method. As toArray reads from the database, it can take some time and so it is an asynchronous call, and a callback function must be provided.
+
+## The Rest API
+Many services provide a REST API so that clients (their own and those of 3rd parties) and other services can use the service in a well defined, lossely coupled manner. 
+
+## Debugging Tips
+Developers working with browser-side javaScript benefit from the excellent tools built into modern browsers. Google's chrome developer tools which let you
+- Browse code (e.g. HTML and JS)
+- Add breakpionts
+- View & alter contents of variables
+- View and modify css styles
+- vew network messages
+0 Access the console- Check security details
+- Audit memory use, CPU, etc.

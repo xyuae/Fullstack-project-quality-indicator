@@ -6,7 +6,7 @@ The permitted schemaTypes are
 - String, Number, Date, Buffer, Boolean, Mixed, ObjectId, Array
 */
 var ProjectSchema = new Schema({
-	name: {	type: String, required: true，index: {unique: true}},	// name is index and unique
+	name: {	type: String, required: true, index: {unique: true}},	// name is index and unique
 	createdAt : { type: Date, default: Date.now },
 	updateAt: { type: Date, default: Date.now },
 	people: [ {type: String} ], 	// an array of names
@@ -183,9 +183,9 @@ var ProjectSchema = new Schema({
 			verif_plan: { type:Number, min: 1, max: 2 },
 			verif_report: { type:Number, min: 1, max: 2 },
 		}
-	}
-	// array of ids from the users
-	author: [{type: Schema.Types.ObjectId, ref: 'user'}],
+	},
+	// array of ids from the owners
+	owners: [{type: Schema.Types.ObjectId, ref: 'user'}],
 	// array of ids from the categories
   	categories: [{type: Schema.Types.ObjectId, ref: 'category'}],
 	// array of project status history
