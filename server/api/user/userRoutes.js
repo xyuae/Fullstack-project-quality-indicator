@@ -1,5 +1,6 @@
 var router = require('express').Router();
 var logger = require('../../util/logger');
+var _ = require('lodash');
 
 // setup boilerplate route jsut to satisfy a request
 // for building

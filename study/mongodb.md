@@ -73,4 +73,33 @@ These are the technologies that are  revolutionising the web, building web-based
 The separation of layers, and especially the REST APIs, has led to the breaking down of applicaiton silos. Rather than an applicaiton being an isolated entity, it can now interact with multiple services through public APIs.
 
 ## Part 2: Using MongoDB with Node.js
-The MongoDB node.js driver provides a JavaScript API which implements the network protocol required ot read and write from a local or emote MongoDB database. If using a replica set then the driver also decides which MongoDB instance to send each request to. 
+The MongoDB node.js driver provides a JavaScript API which implements the network protocol required to read and write from a local or emote MongoDB database. If using a replica set then the driver also decides which MongoDB instance to send each request to. If using a sharded MongoDB cluster then the driver connects to the mongos query router, which in turn picks the corrct shards to direct each request to.
+
+We implement a shallow wrapper for the driver which simplifies the database interface that the application code is exposed to.
+__Code highlights__
+javascripts/db.js defines an object prototype (think class from other languages) named DB to provide access to MongoDB.
+Its only dependency is the MongoDB Node.js drvier:
+`var MongoClient = require('mongodb').MongoClient;`
+
+The prototype has a single propety - `db` which stores the database connection; it's initialised to null in the constructor:
+```js
+function DB() {
+	this.db = null;	// The MongoDB database connection
+}
+```
+The mongoDB driver is asyncrhonous (the function returns without waiting for the requested operation to complete); there are two different patterns for handling this:
+1. The application passes a callback function as a parameter; the driver will invoke this callback function when the operation has run to completion (either on success or failure)
+2. If the application does not pass a callback function then the driver function will return a promise
+This is the general pattern when using promises:
+The methods of the `DB` object prototype we create are also asynchronous and also return promises (rather than accepting callback functions). This is the general pattern for returning and then subsequently satisfying promises:
+`db.js` represents a thin wrapper on top of the MongoDB driver library and so (with the background on promises under our belt) the code should be intuitive. The basic interaction model from the applicaiton should be:
+1. Connect to the database
+2. Perform all of the required database actions for the current request
+3. Disconnect from the database
+
+Here is the method from db.js to open the database connection:
+
+One of the simplest methods that can be called to use this new connection is to count the number of documents in a collection:
+Note that the collection method on the database connection doesn't support promises and so a callback function is provided Instead.
+
+And after counting the documents; the application should close the connection with this method:

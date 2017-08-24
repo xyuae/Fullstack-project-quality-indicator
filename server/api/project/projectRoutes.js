@@ -1,7 +1,7 @@
 /*
 RESTful api for project CRUD
 */
-
+var _ = require('lodash');
 var projectRouter = require('express').Router();
 
 var projects = [];
@@ -37,7 +37,6 @@ projectRouter.get('/:id', (req, res) => {
 
 projectRouter.post('/', updateId, (req, res) => {
 	var project = req.body;
-
 	projects.push(project);
 	res.json(project);
 });
@@ -53,8 +52,15 @@ projectRouter.put('/:id', (req, res) => {
 		res.send();
 	} else {
 		var updatedproject = _.assign(projects[project], update);
+		//console.log(updatedproject)
 		res.json(updatedproject);
 	}
+});
+
+projectRouter.delete('/:id', function(req, res) {
+  var project = _.findIndex(projects, {id: req.params.id});
+  projects.splice(project, 1);
+  res.json(req.project);
 });
 
 module.exports = projectRouter;
