@@ -1,16 +1,17 @@
 var app = require('./server/server');
 var request = require('supertest');   // supertest handle the http request
 var chai = require('chai').expect;    // chai is an assertion library for test
+var colors = require('colors');
 // Mocha is running the test which gives describe and framework
 
 // make tests for the other CRUD routes
 // DELETE, UPDATE, PUT, GET ONE
 
-describe('[Project]', function(){
+describe('[User]'.yellow, function(){
   // test get
-  it('should get all projects', function(done) {
+  it('should get all users', function(done) {
     request(app)
-      .get('/api/projects')
+      .get('/api/users')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)  // a method from chai
@@ -19,47 +20,45 @@ describe('[Project]', function(){
         done();
       })
   });
-  // define a mock project data for post, update and delete
-  var project = {
-      name: "Mufasa",
-      age: 100,
-      pride: 'Evil projects',
-      gender: 'male'
+  // define a mock user data for post, update and delete
+  var user = {
+      username: "Mufasa",
   }
   // test post
-  it('should create a project', (done) => {
+  it('should create a user', (done) => {
 
       request(app)
-        .post('/api/projects')
-        .send(project)
+        .post('/api/users')
+        .send(user)
         .set('Accept', 'application/json')
         .expect('201')
         .end((err, resp) => {
-            project.id = "1";
+            user._id = resp.body._id;
             chai(resp.body).to.be.an('object');
-            chai(resp.body).to.eql(project);
+            console.log(resp.body.username)
+            chai(resp.body.username).to.eql(user.username);
             done();
         })
   });
   // test put
-  it('should update a project', (done) => {
+  it('should update a user', (done) => {
       request(app)
-        .put('/api/projects/' + project.id)
+        .put('/api/users/' + user._id)
         .send({
-            name: 'new name'
+            username: 'new name'
         })
         .end((err, resp) => {
-            chai(resp.body.name).to.eql('new name');
+            chai(resp.body.username).to.eql('new name');
             done();
         })
   });
   // test delete
-  it('should delete a project', (done) => {
-      project.name = "new name";
+  it('should delete a user', (done) => {
+      user.username = "new name";
       request(app)
-        .delete('/api/projects/' + project.id)
+        .delete('/api/users/' + user._id)
         .end((err, resp) => {
-            chai(resp.body).to.eql(project);
+            chai(resp.body.username).to.eql(user.username);
             done();
         })
   });

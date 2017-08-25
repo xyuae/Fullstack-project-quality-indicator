@@ -3,10 +3,11 @@
 ## Project Duration: August 2017 to October 2017
 ## Introduction
 The Quality Indicator, which measures the firmware quality status during and at the end of the project life cycle, are composed of “DO” data and “END IT” data. Currently, the Project Quality Indicator is documented in Excel. However, the excel version lacks flexibility in maintenance and expandability. In addition, the quality indicator should have the capability to be integrated into the quality state model for future expansion. Therefore, a web-based application that record and present the project quality data is required.
-Functional requirement
+
+__Functional requirement__
 1.	CRUD API of Project Information
 2.  Calculate project quality indicator
-4.	Record the current status and history of the quality indicator (ex. Radar diagram and history diagram)
+4.	Record the current status and history of the quality indicator
 5.	Upload and download interface for data in Excel format
 
 ## Design
@@ -24,11 +25,11 @@ npm test
 npm start
 ```
 <p align="center">
-  <img src="resource/readme/test_api.png" alt="Test the api" />
+  <img src="./resource/readme/test_api.png" alt="Test the api" />
 </p>
 
 ## Plan and Milestone
-- 8/11 – 8/18: Expand the functional property of the website  
+- 8/11 – 8/18: Build the functional property of the website server  
 - Milestone: Set up backend environment, create RESTful api
 - 8/20 - 8/27: Testing, and mongo db, data modeling
 - Milestone: Setup testing code and create mongo database for project
