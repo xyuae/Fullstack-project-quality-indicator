@@ -10,10 +10,10 @@ var ProjectSchema = new Schema({
 	createdAt : { type: Date, default: Date.now },
 	updateAt: { type: Date, default: Date.now },
 	people: [ {type: String} ], 	// an array of names
-	do: Boolean,
-	endIt: Boolean,
-	safety_require: Boolean,
-	cyber_require: Boolean,
+	do: { type: Boolean, default: false },
+	endIt: { type: Boolean, default: false },
+	safety_require: { type: Boolean, default: false },
+	cyber_require: { type: Boolean, default: false },
 	/*
 	Technical mastery status
 	Componnets are: specification, architecture&global design

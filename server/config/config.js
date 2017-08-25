@@ -2,11 +2,16 @@ var _ = require('lodash');
 
 // deafult config object for our api
 var config = {
-  /* just placing the name of our possible NODE_ENV values for later*/
-  dev: 'development',
-  test: 'testing',
-  prod: 'production',
-  port: process.env.PORT || 3000
+    /* just placing the name of our possible NODE_ENV values for later*/
+    dev: 'development',
+    test: 'testing',
+    prod: 'production',
+    port: process.env.PORT || 3000,
+    // 10 days in minutes
+    expireTime: 24 * 60 * 10,
+    secrets: {
+      jwt: process.env.JWT || 'gumball'
+    }
 };
 
 // check to see if the NODE_ENV was set, if not, the set it to dev
@@ -22,7 +27,6 @@ var envConfig;
 // require could error out if the file don't exist
 try {   // make sure the require actually get something back
     envConfig = require('./' + config.env);
-    //console.log(envConfig);
     envConfig = envConfig || {};
 } catch(e) {
     envConfig = {};

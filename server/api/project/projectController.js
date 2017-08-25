@@ -4,7 +4,7 @@ var logger = require('../../util/logger');
 
 exports.params = function(req, res, next, id) {
   Project.findById(id)
-    .populate('author')
+    .populate('owners categories')
     .exec()
     .then(function(project) {
       if (!project) {

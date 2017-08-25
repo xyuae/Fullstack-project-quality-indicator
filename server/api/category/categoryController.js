@@ -19,7 +19,7 @@ exports.params = function(req, res, next, id) {
 
 // get all the categoires
 exports.get = function(req, res, next) {
-    Post.find({})
+    Category.find({})
         .then(category => {
             res.json(category);
         }, err => {
