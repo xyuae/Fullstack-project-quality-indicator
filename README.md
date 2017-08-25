@@ -25,7 +25,7 @@ npm test
 npm start
 ```
 <p align="center">
-  <img src="./resource/readme/test_api.png" alt="Test the api" />
+  <img src="./resource/readme/test_api.PNG" alt="Test the api" />
 </p>
 
 ## Plan and Milestone
