@@ -116,7 +116,7 @@ It's worth looking at the sampleCollection prototype method as it uses a databse
 Note that collection.aggregate doesn't actually access the database - that's why its a syncrhonous call - instead, it returns a cursor. The cursor is then used to read the data from MongoDB by invoking its toArray method. As toArray reads from the database, it can take some time and so it is an asynchronous call, and a callback function must be provided.
 
 ## The Rest API
-Many services provide a REST API so that clients (their own and those of 3rd parties) and other services can use the service in a well defined, lossely coupled manner. 
+Many services provide a REST API so that clients (their own and those of 3rd parties) and other services can use the service in a well defined, lossely coupled manner.
 
 ## Debugging Tips
 Developers working with browser-side javaScript benefit from the excellent tools built into modern browsers. Google's chrome developer tools which let you
@@ -127,3 +127,6 @@ Developers working with browser-side javaScript benefit from the excellent tools
 - vew network messages
 0 Access the console- Check security details
 - Audit memory use, CPU, etc.
+
+## Mongoose middleware
+Mongoose, like express, has support for middleware. Middleware is perfect for validating, changing, notifying, etc. We can use middleware to hash passwords before a user is created. Middleware will attach to life cycle events around our documents like before save, before validations, after save, etc.
