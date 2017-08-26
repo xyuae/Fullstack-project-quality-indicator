@@ -47,7 +47,8 @@ npm start
 - unit test for testibility
 - complicated RESTful api: parse API.
 - PubNub real-time communication
-- JSCS: js style checker
+- JSCS: [convert jscs into eslint](https://eslint.org/blog/2016/04/welcoming-jscs-to-eslint)
+- [Node, react web resource](https://www.scotch.io/)
 
 ## Resource
 - [My note on middleware/nodejs](./study/note.md)
