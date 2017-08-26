@@ -22,11 +22,11 @@ exports.get = function(req, res, next) {
   User.find({})
     .select('-password')
     .exec()
-    .then(function(users){
-      res.json(users.map(function(user){
+    .then(function(users) {
+      res.json(users.map(function(user) {
         return user.toJson();
       }));
-    }, function(err){
+    }, function(err) {
       next(err);
     });
 };
@@ -49,14 +49,14 @@ exports.put = function(req, res, next) {
     } else {
       res.json(saved.toJson());
     }
-  })
+  });
 };
 
 exports.post = function(req, res, next) {
   var newUser = new User(req.body);
 
   newUser.save(function(err, user) {
-    if(err) { return next(err);}
+    if (err) { return next(err);}
 
     var token = signToken(user._id);
     res.json({token: token});

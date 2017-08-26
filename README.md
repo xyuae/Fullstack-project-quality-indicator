@@ -14,6 +14,8 @@ __Functional requirement__
 The website is about Overview/Add/List view in a single page app.
 
 ## Methodology
+Install MongoDB and open the mongod.exe in command line`mongod.exe`
+
 Build the REST API system using express and mongo db.
 Download and install nodejs(with npm inside).
 We're going to use mocha and chai along with supertest to run integration test against our api. Install testing environment:
@@ -43,6 +45,9 @@ npm start
 - build and query MongoDB database
 - Authentication on the mongo model (look into password.js in the future)
 - unit test for testibility
+- complicated RESTful api: parse API.
+- PubNub real-time communication
+- JSCS: js style checker
 
 ## Resource
 - [My note on middleware/nodejs](./study/note.md)

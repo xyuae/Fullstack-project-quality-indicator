@@ -10,11 +10,11 @@ router.param('id', controller.params);
 
 router.route('/')
   .get(controller.get)
-  .post(checkUser, controller.post)
+  .post(checkUser, controller.post);
 
 router.route('/:id')
   .get(controller.getOne)
   .put(checkUser, controller.put)
-  .delete(checkUser, controller.delete)
+  .delete(checkUser, controller.delete);
 
 module.exports = router;

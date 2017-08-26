@@ -39,7 +39,7 @@ var cleanDB = function() {
       return model.remove().exec();
     });
   return Promise.all(cleanPromises);
-}
+};
 
 var createUsers = function(data) {
 
@@ -70,7 +70,7 @@ var createProjects = function(data) {
 
     return new Promise(function(resolve, reject) {
       project.save(function(err, saved) {
-        return err ? reject(err) : resolve(saved)
+        return err ? reject(err) : resolve(saved);
       });
     });
   };
@@ -82,8 +82,8 @@ var createProjects = function(data) {
 
   return Promise.all(newProjects)
     .then(function(savedProjects) {
-      return Promise.all(savedProjects.map(function(project, i){
-        return addCategory(project, data.categories[i])
+      return Promise.all(savedProjects.map(function(project, i) {
+        return addCategory(project, data.categories[i]);
       }));
     })
     .then(function() {

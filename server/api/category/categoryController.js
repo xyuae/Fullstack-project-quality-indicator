@@ -6,15 +6,15 @@ exports.params = function(req, res, next, id) {
   // use the id and attach the category to req
   Category.findById(id)
     .then(category => {
-        if(!category) {
-            next(new Error('No category with that id'));
+        if (!category) {
+          next(new Error('No category with that id'));
         } else {
-            req.category = category;
-            next();
+          req.category = category;
+          next();
         }
-    }, err => {
+      }, err => {
         next(err);
-    });
+      });
 };
 
 // get all the categoires
@@ -22,10 +22,10 @@ exports.get = function(req, res, next) {
     Category.find({})
         .then(category => {
             res.json(category);
-        }, err => {
+          }, err => {
             next(err);
-        });
-};
+          });
+  };
 
 // handler to return a json ojbect
 exports.getOne = function(req, res, next) {
@@ -47,7 +47,7 @@ exports.put = function(req, res, next) {
     } else {
       res.json(saved);
     }
-  })
+  });
 };
 
 exports.post = function(req, res, next) {

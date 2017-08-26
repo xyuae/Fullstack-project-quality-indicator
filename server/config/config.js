@@ -12,7 +12,7 @@ var config = {
     secrets: {
       jwt: process.env.JWT || 'gumball'
     }
-};
+  };
 
 // check to see if the NODE_ENV was set, if not, the set it to dev
 process.env.NODE_ENV = process.env.NODE_ENV || config.dev;
@@ -26,10 +26,10 @@ config.env = process.env.NODE_ENV;
 var envConfig;
 // require could error out if the file don't exist
 try {   // make sure the require actually get something back
-    envConfig = require('./' + config.env);
-    envConfig = envConfig || {};
-} catch(e) {
-    envConfig = {};
+  envConfig = require('./' + config.env);
+  envConfig = envConfig || {};
+} catch (e) {
+  envConfig = {};
 }
 
 // merge the two config files together

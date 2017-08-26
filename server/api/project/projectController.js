@@ -22,9 +22,9 @@ exports.get = function(req, res, next) {
   Project.find({})
     .populate('owners categories')
     .exec()
-    .then(function(projects){
+    .then(function(projects) {
       res.json(projects);
-    }, function(err){
+    }, function(err) {
       next(err);
     });
 };
@@ -47,7 +47,7 @@ exports.put = function(req, res, next) {
     } else {
       res.json(saved);
     }
-  })
+  });
 };
 
 exports.post = function(req, res, next) {

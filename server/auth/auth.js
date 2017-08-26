@@ -1,7 +1,7 @@
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');    // wrapper around jsonwebtoken
 var config = require('../config/config');
-var checkToken = expressJwt({ secret: config.secrets.jwt });    //return middleware for token verification
+var checkToken = expressJwt({secret: config.secrets.jwt});    //return middleware for token verification
 var User = require('../api/user/userModel');
 
 exports.decodeToken = function() {
@@ -41,45 +41,45 @@ exports.getFreshUser = function() {
       }, function(err) {
         next(err);
       });
-  }
+  };
 };
 
 exports.verifyUser = function() {
   return function(req, res, next) {
-    var username = req.body.username;
-    var password = req.body.password;
+      var username = req.body.username;
+      var password = req.body.password;
 
-    // if no username or password then stop.
-    if(!username || !password) {
+      // if no username or password then stop.
+      if (!username || !password) {
         res.status(400).send('You neef a username and password');
         return;
-    }
+      }
 
-    // look user up in the DB so we can check
-    // if the passwords match for the username
-    var user = User.findOne({username: username})
-        .then(user => {
-            if (!user) {
+      // look user up in the DB so we can check
+      // if the passwords match for the username
+      var user = User.findOne({username: username})
+          .then(user => {
+              if (!user) {
                 res.status(401).send('No user with the given username');
-            } else {
+              } else {
                 // checking the password here
                 if (!user.authenticate(password)) {
-                    // use the authenticate() method on a user doc. Passin
-                    // in the posted password, it will hash the
-                    // password the same way as the current passwords got hashed
-                    res.status(401).send('Wrong password')
+                  // use the authenticate() method on a user doc. Passin
+                  // in the posted password, it will hash the
+                  // password the same way as the current passwords got hashed
+                  res.status(401).send('Wrong password');
                 } else {
-                    // if everything is good,
-                    // then attach to req.user
-                    // and call next so the controller
-                    // can sign a token from the req.user._id
-                    req.user = user;
-                    next();
+                  // if everything is good,
+                  // then attach to req.user
+                  // and call next so the controller
+                  // can sign a token from the req.user._id
+                  req.user = user;
+                  next();
                 }
-            }
-        }, err => {
-            next(err);
-        })
+              }
+            }, err => {
+              next(err);
+            });
     };
 };
 
