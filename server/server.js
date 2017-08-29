@@ -4,8 +4,13 @@ var api = require('./api/api');
 var config = require('./config/config');
 var logger = require('./util/logger');
 var auth = require('./auth/routes');
+
+// Connect to mongodb
 // db.url is different depending on NODE_ENV
-require('mongoose').connect(config.db.url);
+var mongoose = require('mongoose');
+mongoose.connect(config.db.url);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
 
 if (config.seed) {
   require('./util/seed');

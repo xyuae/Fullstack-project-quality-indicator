@@ -2,6 +2,23 @@ var Project = require('./projectModel');
 var _ = require('lodash');
 var logger = require('../../util/logger');
 
+// security concern: authorized user can access all projects given their name
+exports.paramsByName = function(req, res, next, name) {
+  Project.find({name: name}, {name: 1, history:1})
+  .populate('owners categories')
+  .exec()
+  .then(function(project){
+    if(!project) {
+      next(new Error('No project with that name'));
+    } else {
+      req.project = project;
+      next();
+    }
+  }, function (err) {
+    next(err);
+  });
+};
+
 exports.params = function(req, res, next, id) {
   Project.findById(id)
     .populate('owners categories')
