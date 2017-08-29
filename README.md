@@ -27,13 +27,12 @@ npm test
 npm start
 ```
 <p align="center">
-  <img src="resources/readme/test_api.png" alt="Test the api" />
+  <img src="resources/readme/test_api.PNG" alt="Test the api" />
 </p>
 
 ## Plan and Milestone
 - 8/11 – 8/18: Build the functional property of the website server  
 - Milestone: Set up backend environment, create RESTful api
-- 8/20 - 8/27: Testing, and mongo db, data modeling
 - Milestone: Setup testing code and create mongo database for project
 	- Completed integration testing code
 	- Built model for category/user/project in MongoDB

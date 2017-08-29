@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var logger = require('../../util/logger');
+//var logger = require('../../util/logger');
 var controller = require('./userController');
 var auth = require('../../auth/auth');
 var checkUser = [auth.decodeToken(), auth.getFreshUser()];
