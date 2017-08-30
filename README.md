@@ -48,6 +48,7 @@ npm start
 - PubNub real-time communication
 - JSCS: [convert jscs into eslint](https://eslint.org/blog/2016/04/welcoming-jscs-to-eslint)
 - [Node, react web resource](https://www.scotch.io/)
+- Build depolyable system with Mern and Electrode
 
 ## Resource
 - [My note on middleware/nodejs](./study/note.md)
