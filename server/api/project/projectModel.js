@@ -17,8 +17,8 @@ const dotProdcut = (array1, array2) => {
 
 var ProjectSchema = new Schema({
   name: {type: String, required: true, index: {unique: true}},	// name is index and unique
-  createdAt: {type: Date, default: Date.now},
-  updateAt: {type: Date, default: Date.now},
+  createdAt: {type: String, default: Date},
+  updateAt: {type: String, default: Date},
   people: [{type: String}],
   do: {type: Boolean, default: false},
   endIt: {type: Boolean, default: false},
@@ -212,7 +212,7 @@ var ProjectSchema = new Schema({
   categories: [{type: Schema.Types.ObjectId, ref: 'category'}],
   // array of project status history
   history: [{
-    updateAt: {type: Date, required: true},
+    updateAt: {type: String, required: true},
     technical_mastery_status: {type: Number, max: 1, min: 0},
     safety_status: {type: Number, max: 1, min: 0},
     cyber_status: {type: Number, max: 1, min: 0},
@@ -311,7 +311,7 @@ ProjectSchema.methods = {
      {
       technical_mastery_status:
       {
-        score: value1 + value2
+        score: dotProdcut([0.5, 0.5], [value1, value2])
       }
     }
     );

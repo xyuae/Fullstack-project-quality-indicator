@@ -76,6 +76,7 @@ var createProjects = function(data) {
   };
 
   var newProjects = projects.map(function(project, i) {
+    //project.owners.push(data.users[i]);
     project.author = data.users[i]._id;
     return createDoc(Project, project);
   });

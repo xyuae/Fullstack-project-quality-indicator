@@ -18,6 +18,7 @@ if (config.seed) {
 // setup the app middlware
 require('./middleware/appMiddlware')(app);
 
+app.set('view engine', 'ejs');
 // setup the api
 app.use('/api', api);
 app.use('/auth', auth);

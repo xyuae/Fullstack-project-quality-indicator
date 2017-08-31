@@ -4,9 +4,17 @@
 // you can just require that folder and node will
 // automatically require the index.js on the root
 
+var express = require('express');
 // setup config first before anything by requiring it
 var config = require('./server/config/config');
 var app = require('./server/server');
+
+app.use(express.static(__dirname+ '/client/dist'));
+/*
+app.get('/', function(req, res){
+  res.sendfile(__dirname + '/client/dist/index.html');
+});
+*/
 // logger is a wrapper around console.log that adds color,
 // logs objects as json and can be conditionally turned off
 // so you don't have to erase all calls to it
