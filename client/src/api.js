@@ -11,9 +11,8 @@ export const fetchAllProject = () => {
               .then(res => res.data);
 };
 
-/*
+
 export const postProject = (newProject) => {
-  return axios.post('api/projects')
+  return axios.post('api/projects', newProject)
               .then(res => res.data);
 };
-*/

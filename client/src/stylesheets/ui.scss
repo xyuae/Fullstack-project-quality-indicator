@@ -78,6 +78,51 @@ progress::-webkit-progress-value {
   }
 }
 
+div.project-count {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 3em;
+  height: calc(100% - 3em);
+  background: linear-gradient(#68c87a, #0d8bcd);
+  
+
+  > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.total-projects {
+      flex-basis: 100%;
+      font-size: 2em;
+
+      span, svg {
+        height: 200px;
+      }
+    }
+
+    &:not(.total-days) {
+      flex-basis: 50%;
+    }
+
+    span, svg {
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:first-child {
+        border-radius: 25px 0 0 25px;
+        font-size: .5em;
+      }
+
+      &:last-child {
+        border-radius: 0 25px 25px 0;
+        font-size: .5em;
+      }
+    }
+  }
+}
+
 div.ski-day-count {
   display: flex;
   flex-wrap: wrap;
@@ -119,12 +164,8 @@ div.ski-day-count {
         font-size: .5em;
         padding-right: 15px;
       }
-
     }
-
   }
-
-
 }
 
 
@@ -149,7 +190,7 @@ div.project-list {
         cursor: pointer;
         color: blue;
     }
-    
+
     td {
       padding: .2em;
     }

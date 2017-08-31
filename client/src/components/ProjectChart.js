@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Chart } from './Chart';	// must use destructor form to import
+//import { Chart } from './Chart';	// must use destructor form to import
+import ReactHighcharts from 'react-highcharts';
 //import { PropTypes } from 'prop-types';
 
 /*
@@ -7,22 +8,28 @@ A chart showing the change of project satus
 */
 
 export class ProjectChart extends Component {
-  render() {
-    if (!this.props.name) {
-      return null;
-    }
+  constructor(props){
+    super(props);
+    this.state = {
+      option: 'Nothing'
+    };
+  }
+  toPercent = (number) => number*100;
+  componentWillReceiveProps =(nextProps) => {
+    if (!nextProps.history) return;
+    //console.log('pass test');
     let technical_history = Array();
     let safety_history = Array();
     let cyber_history = [];
     let development_history = Array();
-    for (let i = 0; i < this.props.history.length; i++){
-      let history = this.props.history[i];
+    for (let i = 0; i < nextProps.history.length; i++){
+      let history = nextProps.history[i];
       let date = new Date(history.updateAt);
       date = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
-      technical_history.push(Array(date, history.technical_mastery_status));
-      safety_history.push([date, history.safety_status]);
-      cyber_history.push([date, history.cyber_status]);
-      development_history.push([date, history.development_mastery_status]);
+      technical_history.push(Array(date, this.toPercent(history.technical_mastery_status)));
+      safety_history.push([date, this.toPercent(history.safety_status)]);
+      cyber_history.push([date, this.toPercent(history.cyber_status)]);
+      development_history.push([date, this.toPercent(history.development_mastery_status)]);
     }
     //console.log(technical_history);
     const options = {
@@ -33,7 +40,7 @@ export class ProjectChart extends Component {
         text: 'Resume History'
       },
       subtitle: {
-        text: 'Project Name: ' + this.props.name
+        text: 'Project Name: ' + nextProps.name
       },
       xAxis: {
         type: 'datetime',
@@ -46,7 +53,7 @@ export class ProjectChart extends Component {
           text: 'Status (%)'
         },
         min: 0,
-        max: 1,
+        max: 100,
       },
       tooltip: {
         headerFormat: '<b>{series.name}</b><br>',
@@ -81,8 +88,17 @@ export class ProjectChart extends Component {
       }
     ]
     };
+    this.setState({
+      option: options
+    });
+  }
+  render() {
+    //console.log(this.props);
+    if (!this.props.name) {
+      return null;
+    }
     return (
-     <Chart options={options}/>
+     <ReactHighcharts config={this.state.option}/>
     );
 
   }

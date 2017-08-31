@@ -13,7 +13,7 @@ export class ProjectList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedProject: []
+      selectedProject: ''
     };
   }
 
@@ -48,7 +48,7 @@ export class ProjectList extends Component {
 							</td>
 						</tr>
 	            		<tr>
-	            			<th>Date</th>
+	            			<th>Created Date</th>
 	            			<th>Project Name</th>
 							      <th>Techical Mastery Status</th>
                     <th>Safety Status</th>
@@ -57,6 +57,7 @@ export class ProjectList extends Component {
 	            		</tr>
 
 	            	</thead>
+
 	            	<tbody>
 	            		{this.filteredProjects().map((project, i) =>
                   <ProjectRow key={i} onClick={this.onProjectClick}

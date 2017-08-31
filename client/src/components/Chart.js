@@ -10,7 +10,7 @@ export class Chart extends Component {
     );
   }
 
-  componentWillUnmount() {
+  componentWillUnmount =() => {
     this.chart.destroy();
   }
 

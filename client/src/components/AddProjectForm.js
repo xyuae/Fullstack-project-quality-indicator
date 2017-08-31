@@ -1,122 +1,153 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 /*
 UI design for project information input form
 */
 // stateless Component with refs as callbacks function
-export const AddProjectForm = ({projectName,
-							 date,
-							 safety_require,
-							 cyber_require,
-						   technical_mastery_status,
-						 	 onNewProject}) => {
-  // console.log(typeof onNewProject); // print typeof onNewProject
-  let _projectName, _date, _safety_require, _cyber_require, _technical_mastery_status;	// define local reference
-  const submit = (e) =>  {	// function for sumbit data
-    e.preventDefault();
-    onNewProject({
-      date: _date.value,
-      projectName: _projectName.value,
-      safety_require: _safety_require.checked,
-      cyber_require: _cyber_require.checked,
-      technical_mastery_status: _technical_mastery_status.value
-    });
-    /*
-    console.log('project', _projectName.value);
-    console.log('date', _date.value);
-    console.log('safety_require', _safety_require.checked);
-    console.log('cyber_require', _cyber_require.checked);
-    console.log('technical_mastery_status', _technical_mastery_status.value);
-    */
-    _projectName.value = '';
-    _date.value = '';
-    _safety_require.checked = false;
-    _cyber_require.checked = false;
+export class AddProjectForm extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      createdAt: '',
+			updateAt: '',
+      name: '',
+      safety_require: false,
+      cyber_require: false,
+      technical_mastery_status: {
+				specification: {
+					completeness: 4
+				}
+      }
+    };
+  }
+  handleSubmit = (event) => {	// function for sumbit data
+    event.preventDefault();
+    console.log(this.state);
+		this.props.onNewProject(this.state);
   };
+  getCurrentDate() {
+    // return the current date in string format of "yy-mm-dd"
+    // For example, "2017-08-18"
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = (now.getMonth() + 1 < 10) ? '0' + (now.getMonth() + 1) : (now.getMonth() + 1);
+    var date = now.getDate();
+    return year + '-' + month + '-' + date;
+  }
+  handleInputChange = (event) => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    //console.log(value);
+    const name = target.name;
+    //console.log(this);
+    this.setState({
+      [name]: value
+    });
+  };
+	handleSecondaryInputChange = (event) => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    //console.log(value);
+    const name = target.name.split('.');
+		let firstName = name[0];
+		let secondName = name[1];
+    this.setState({
+      [firstName]: {
+				[secondName]: value
+			}
+    });
+  };
+	handleThirdLevelInputChange = (event) => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    //console.log(value);
+		console.log(value);
+    const name = target.name.split('.');
+		let firstName = name[0];
+		let secondName = name[1];
+		let thirdName = name[2];
+    this.setState({
+      [firstName]: {
+				[secondName]: {
+					[thirdName]: value
+				}
+			}
+    });
+  };
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit} className='add-project-form'>
+				<label htmlFor='projectName'> Project name</label>
+				<input id='projectName'
+          name='name'
+					value={this.state.name}
+					onChange={this.handleInputChange}
+          type='text'
+          required
+          autoFocus= 'true'>
+				 </input>
 
-  return (
-   <form onSubmit={submit} className='add-project-form'>
-			<label htmlFor='projectName'> Project Name</label>
-			<input id='projectName'
-        type='text'
-        required
-        defaultValue={projectName}
-        autoFocus= 'true'
-        ref={input => _projectName = input}/>
+				<label htmlFor='createdAt'>Create date</label>
+				<input id='createdAt'
+           type='date'
+           required
+           name='createdAt'
+           value={this.state.createdAt}
+           onChange={this.handleInputChange}/>
 
-			<label htmlFor='date'>Date</label>
-			<input id='date'
-        type='date'
-        required
-        defaultValue={date}
-        ref={input => _date = input}/>
+				 <label htmlFor='updateAt'>Update date</label>
+				<input id='updateAt'
+	          type='date'
+	          required
+	          name='updateAt'
+	          value={this.state.updateAt}
+	          onChange={this.handleInputChange}/>
 
-			<div>
-				<input id='safety_require'
-         type='checkbox'
-         defaultChecked={safety_require}
-         ref={input => _safety_require = input}/>
-				<label htmlFor='safety_require'>
-					Do you have Saftey Certification Requirement in your project?
-				</label>
-			</div>
+         <div>
+           <input
+             id = 'safety_require'
+             name='safety_require'
+             type='checkbox'
+             checked={this.state.safety_require}
+             onChange={this.handleInputChange}/>
+           <label htmlFor='safety_require'>
+             Do you have Saftey Certification Requirement in your project?
+           </label>
+       </div>
+         <br/>
 
-			<div>
-				<input id='cyber_require'
-         type='checkbox'
-         defaultChecked={cyber_require}
-         ref={input => _cyber_require = input}/>
-				<label htmlFor='cyber_require'>
-					Do you have Cyber Security Requirement in your project?
-				</label>
-			</div>
+				<div>
+					<input id='cyber_require'
+            name='cyber_require'
+            type='checkbox'
+            checked={this.state.cyber_require}
+            onChange={this.handleInputChange}/>
+					<label htmlFor='cyber_require'>
+						Do you have Cyber Security Requirement in your project?
+					</label>
+				</div>
 
-			<div>
-				Technical Mastery Status
-			</div>
+        <div>
+				<label>
+          Completeness of technical mastery status
+          <select value={this.state.technical_mastery_status.specification.completeness}
+            onChange={this.handleThirdLevelInputChange}
+						name='technical_mastery_status.specification.completeness'>
+            <option value = {1}>Complete</option>
+            <option value = {2}>Minor information missing</option>
+            <option value = {3}>Major information missing</option>
+            <option value = {4}>No document</option>
+          </select>
+        </label>
+        </div>
 
-
-
-			<div>
-				<label htmlFor='technical_mastery_status'>
-					Technical Mastery Status:
-				</label>
-				<input id='technical_mastery_status'
-         type='number'
-         min = '0'
-         max = '1'
-         required
-         defaultValue = {technical_mastery_status}
-         ref={input => _technical_mastery_status = input}/>
-
-			</div>
-			<button>Add Project</button>
-		</form>
-  );
-};
-
-function getCurrentDate() {
-  // return the current date in string format of "yy-mm-dd"
-  // For example, "2017-08-18"
-  let now = new Date();
-  let year = now.getFullYear();
-  let month = (now.getMonth() + 1 < 10) ? '0' + (now.getMonth() + 1) : (now.getMonth() + 1);
-  let date = now.getDate();
-  return year + '-' + month + '-' + date;
+				<input type='submit' value='Submit' />
+			</form>
+     );
+  }
 }
-AddProjectForm.defaultProps = {	// define default properties of the form
-  projectName: 'Project',
-  date: getCurrentDate(),
-  safety_require: false,
-  cyber_require: false,
-  technical_mastery_status: 0
-};
+
 
 AddProjectForm.propTypes = {	// validate properties type
-  projectName: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  safety_require: PropTypes.bool.isRequired,
-  cyber_require: PropTypes.bool.isRequired,
-  technical_mastery_status: PropTypes.number.isRequired,
   onNewProject: PropTypes.func.isRequired,
 };
