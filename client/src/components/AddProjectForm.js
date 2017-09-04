@@ -4,26 +4,35 @@ import PropTypes from 'prop-types';
 UI design for project information input form
 */
 // stateless Component with refs as callbacks function
+
 export class AddProjectForm extends Component{
   constructor(props) {
     super(props);
     this.state = {
       createdAt: '',
-			updateAt: '',
+      updateAt: '',
       name: '',
       safety_require: false,
       cyber_require: false,
       technical_mastery_status: {
-				specification: {
-					completeness: 4
-				}
+        specification: {
+          completeness: 4,
+          review_done: 2
+        },
+        archi_global: {
+          completeness: 4,
+          bricks_used: 2,
+          fmea_done: 2,
+          review_done: 2
+        }
       }
+
     };
   }
   handleSubmit = (event) => {	// function for sumbit data
     event.preventDefault();
     console.log(this.state);
-		this.props.onNewProject(this.state);
+    this.props.onNewProject(this.state);
   };
   getCurrentDate() {
     // return the current date in string format of "yy-mm-dd"
@@ -44,34 +53,34 @@ export class AddProjectForm extends Component{
       [name]: value
     });
   };
-	handleSecondaryInputChange = (event) => {
+  handleSecondaryInputChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     //console.log(value);
     const name = target.name.split('.');
-		let firstName = name[0];
-		let secondName = name[1];
+    let firstName = name[0];
+    let secondName = name[1];
     this.setState({
       [firstName]: {
-				[secondName]: value
-			}
+        [secondName]: value
+      }
     });
   };
-	handleThirdLevelInputChange = (event) => {
+  handleThirdLevelInputChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     //console.log(value);
-		console.log(value);
+    console.log(value);
     const name = target.name.split('.');
-		let firstName = name[0];
-		let secondName = name[1];
-		let thirdName = name[2];
+    let firstName = name[0];
+    let secondName = name[1];
+    let thirdName = name[2];
     this.setState({
       [firstName]: {
-				[secondName]: {
-					[thirdName]: value
-				}
-			}
+        [secondName]: {
+          [thirdName]: value
+        }
+      }
     });
   };
   render() {
@@ -128,17 +137,60 @@ export class AddProjectForm extends Component{
 				</div>
 
         <div>
-				<label>
-          Completeness of technical mastery status
-          <select value={this.state.technical_mastery_status.specification.completeness}
-            onChange={this.handleThirdLevelInputChange}
-						name='technical_mastery_status.specification.completeness'>
-            <option value = {1}>Complete</option>
-            <option value = {2}>Minor information missing</option>
-            <option value = {3}>Major information missing</option>
-            <option value = {4}>No document</option>
-          </select>
-        </label>
+          <h2>Technical Mastery Status</h2>
+          <div>
+            <h3>Specification</h3>
+              <label>
+                Functional specification document completeness?
+                <select value={this.state.technical_mastery_status.specification.completeness}
+                  onChange={this.handleThirdLevelInputChange}
+      						name='technical_mastery_status.specification.completeness'>
+                  <option value = {1}>Complete</option>
+                  <option value = {2}>Minor information missing</option>
+                  <option value = {3}>Major information missing</option>
+                  <option value = {4}>No document</option>
+                </select>
+              </label>
+
+              <label>
+                Reviews done?
+                <select value={this.state.technical_mastery_status.specification.review_done}
+                  onChange={this.handleThirdLevelInputChange}
+      						name='technical_mastery_status.specification.review_done'>
+                  <option value = {1}>Existing review report</option>
+                  <option value = {2}>No review report</option>
+                </select>
+              </label>
+          </div>
+
+          <div>
+            <h3>Architecture & Global Design</h3>
+              <label>
+                Functional specification document completeness?
+                <select value={this.state.technical_mastery_status.specification.completeness}
+                  onChange={this.handleThirdLevelInputChange}
+      						name='technical_mastery_status.specification.completeness'>
+                  <option value = {1}>Complete</option>
+                  <option value = {2}>Minor information missing</option>
+                  <option value = {3}>Major information missing</option>
+                  <option value = {4}>No document</option>
+                </select>
+              </label>
+
+              <label>
+                Reviews done?
+                <select value={this.state.technical_mastery_status.specification.review_done}
+                  onChange={this.handleThirdLevelInputChange}
+      						name='technical_mastery_status.specification.review_done'>
+                  <option value = {1}>Existing review report</option>
+                  <option value = {2}>No review report</option>
+                </select>
+              </label>
+          </div>
+
+
+
+
         </div>
 
 				<input type='submit' value='Submit' />
@@ -146,7 +198,6 @@ export class AddProjectForm extends Component{
      );
   }
 }
-
 
 AddProjectForm.propTypes = {	// validate properties type
   onNewProject: PropTypes.func.isRequired,

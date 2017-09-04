@@ -1,11 +1,11 @@
 @import "globals";
 
 nav.menu {
-  background-color: black;
+  background-color: green;
   position: fixed;
   bottom: 0;
   left: 0;
-  width: calc(100% - 1em);
+  width: calc(100%);
   font-size: 4em;
   padding: .5em;
   display: flex;
@@ -84,7 +84,7 @@ div.project-count {
   font-size: 3em;
   height: calc(100% - 3em);
   background: linear-gradient(#68c87a, #0d8bcd);
-  
+
 
   > div {
     display: flex;
@@ -265,7 +265,6 @@ form.add-project-form {
   >label,
   div {
     margin: 1em 0;
-
   }
 
   label {
@@ -289,6 +288,7 @@ form.add-project-form {
     transform: scale(2);
     margin: 0;
     padding: 0;
+    margin-left: 2em;
     margin-right: 2em;
   }
 
