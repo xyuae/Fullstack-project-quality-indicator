@@ -12,6 +12,9 @@ the information present includes projectName, date, safety requirement,
 and cyber requirement
 */
 export class ProjectRow extends Component {
+  decimalToPercent(number){
+    return Math.floor(number * 100) + '%';
+  }
   dateToString(date){
     //console.log(date);
     date = new Date(date);
@@ -39,16 +42,16 @@ export class ProjectRow extends Component {
 					</div>
 				</td>
 				<td>
-					{(this.props.technical_mastery_status.score)}
+					{this.decimalToPercent(this.props.technical_mastery_status.score)}
 				</td>
         <td>
-					{(this.props.safety_status.score)}
+					{this.decimalToPercent(this.props.safety_status.score)}
 				</td>
         <td>
-					{(this.props.cyber_status.score)}
+					{this.decimalToPercent(this.props.cyber_status.score)}
 				</td>
         <td>
-					{(this.props.development_mastery_status.score)}
+					{this.decimalToPercent(this.props.development_mastery_status.score)}
 				</td>
 			</tr>
     );

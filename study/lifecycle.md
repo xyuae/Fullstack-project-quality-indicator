@@ -1,0 +1,2 @@
+## Component Specificaiton Methods
+The componentDidMount method is invoked only once after the component existst before rendering. And if you want to load some data or work with Ajax, this is the best place to do things. If you are using a funciton to import conetent, make sure that this variable is bound properly. Now another method, componentWillUnmount, happens before a component is unmounted from the dom.

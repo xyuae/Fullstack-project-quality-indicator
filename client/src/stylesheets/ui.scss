@@ -2,19 +2,26 @@
 
 nav.menu {
   background-color: green;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   width: calc(100%);
   font-size: 4em;
-  padding: .5em;
+  padding: .2em;
   display: flex;
+  height: auto;
   justify-content: space-around;
 
   a {
     color: $snow-white;
   }
 }
+
+div.navbar{
+  background-color: green;
+  padding: .5em;
+}
+
 
 div.goal-progress {
 
@@ -52,8 +59,8 @@ div.goal-progress {
 
     font-size: .75em;
     padding: .25em;
-    background-color: green;
-    color: white;
+    background-color: white;
+    color: green;
 
     &:disabled {
       background-color: lightgrey;
@@ -123,55 +130,11 @@ div.project-count {
   }
 }
 
-div.ski-day-count {
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 3em;
-  height: calc(100% - 3em);
-
-  > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &.total-days {
-      flex-basis: 100%;
-      font-size: 2em;
-
-      span, svg {
-        height: 200px;
-      }
-    }
-
-    &:not(.total-days) {
-      flex-basis: 50%;
-    }
-
-    span, svg {
-      background-color: white;
-      height: 100px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      &:first-child {
-        border-radius: 25px 0 0 25px;
-        padding-left: 15px;
-      }
-
-      &:last-child {
-        border-radius: 0 25px 25px 0;
-        font-size: .5em;
-        padding-right: 15px;
-      }
-    }
-  }
-}
 
 
 
 div.project-list {
-  height: calc(100% - 13em);
+  height: 45em;
   overflow-y: scroll;
 
   table {
@@ -180,6 +143,7 @@ div.project-list {
       background-color: rgba(255,255,255, .9);
       color: #8f2e32;
     }
+    //height: 42 em;
     width: 100%;
     background-color: rgba(255,255,255, .9);
     font-family: verdana, sans-serif;
@@ -201,32 +165,6 @@ div.project-list {
   }
 }
 
-div.ski-day-list {
-
-  height: calc(100% - 13em);
-  overflow-y: scroll;
-
-  table {
-    caption {
-      background-color: white;
-      background-color: rgba(255,255,255, .9);
-      color: #8f2e32;
-    }
-    width: 100%;
-    background-color: rgba(255,255,255, .9);
-    font-family: verdana, sans-serif;
-    font-size: 1.5em;
-    text-align: center;
-
-    td {
-      padding: .2em;
-    }
-
-    a {
-      margin: 15px;
-    }
-  }
-}
 
 div.show-errors {
 
@@ -252,6 +190,8 @@ div.show-errors {
   }
 }
 
+
+
 form.add-project-form {
   font-family: Verdana, sans-serif;
   width: 70%;
@@ -259,8 +199,10 @@ form.add-project-form {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: stretch;
-  height: calc(100% - 12em);
+  align-items:stretch;
+  height: 42em;
+  display:block;
+  overflow-y: auto;
 
   >label,
   div {
@@ -282,6 +224,7 @@ form.add-project-form {
     border-radius: .2em;
     outline: none;
     min-height: 36px;
+    margin: inherit;
   }
 
   input[type="checkbox"] {
@@ -295,6 +238,7 @@ form.add-project-form {
   div>label {
     position: relative;
     top: 2px;
+    margin: inherit;
   }
 
   .autocomplete {
@@ -342,7 +286,7 @@ form.add-project-form {
     margin: auto;
     width: 100%;
     font-size: 2em;
-    background-color: #8a2a2d;
+    background-color: green;
     font-weight: bold;
     color: $snow-white;
     padding: 5px;
