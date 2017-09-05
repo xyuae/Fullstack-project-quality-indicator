@@ -33,7 +33,7 @@ export class ProjectList extends Component {
     return (
      <div className='project-list'>
 				<table>
-	            	<thead>
+	          <thead>
 						<tr>
 							<td colSpan={4}>
 								<Link to='/list-projects'>

@@ -1,4 +1,4 @@
-client/dist
+client/dist/assets
 node_modules
 *.log
 DS_Store
