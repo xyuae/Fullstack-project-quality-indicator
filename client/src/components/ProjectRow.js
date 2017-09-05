@@ -1,6 +1,9 @@
 //import Terrain from 'react-icons/lib/md/terrain';
 //import SnowFlake from 'react-icons/lib/ti/weather-snow';
-import Check from 'react-icons/lib/fa/check';
+//import Note from 'react-icons/lib/fa/sticky-note-o';
+import Delete from 'react-icons/lib/fa/close';
+import Update from 'react-icons/lib/fa/wrench';
+import Book from 'react-icons/lib/fa/book';
 //import Calendar from 'react-icons/lib/fa/calendar';
 import { PropTypes } from 'prop-types';
 import React, { Component } from 'react';
@@ -12,9 +15,13 @@ the information present includes projectName, date, safety requirement,
 and cyber requirement
 */
 export class ProjectRow extends Component {
-  decimalToPercent(number){
-    return Math.floor(number * 100) + '%';
-  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      toggleResume: false
+    };
+  } //constructor
+
   dateToString(date){
     //console.log(date);
     date = new Date(date);
@@ -23,40 +30,46 @@ export class ProjectRow extends Component {
     let day = date.getDate();
     //return date.toUTCString();
     return year + '/' + month + '/' + day;
-  }
+  } // dateToString
+  toggleResumeState = () => {
+    //console.log(this.state);
+    let update = !this.state.toggleResume;
+    this.setState({
+      toggleResume: update
+    });
+  } // toggleResume
+  /*
+  displayResume = () => {
+    display: this.state.toogleResume ? 'block': 'none';
+  } // displayResume
+  */
   render() {
     var selectedProject = {
       name: this.props.name,
       history: this.props.history
-    };
-    //console.log('projectName', this.props.projectName);
+    };  //selectedProject
+
     return (
-      <tr>
-				<td>
-					{this.dateToString(this.props.createdAt)}
-				</td>
-				<td>
-					<div className='link ViewHistory'
-      				 onClick= {()=> this.props.onClick(selectedProject)}>
-						{this.props.name}
-					</div>
-				</td>
-				<td>
-					{this.decimalToPercent(this.props.technical_mastery_status.score)}
-				</td>
-        <td>
-					{this.decimalToPercent(this.props.safety_status.score)}
-				</td>
-        <td>
-					{this.decimalToPercent(this.props.cyber_status.score)}
-				</td>
-        <td>
-					{this.decimalToPercent(this.props.development_mastery_status.score)}
-				</td>
-			</tr>
-    );
-  }
-}
+      <tbody>
+        <tr>
+  				<td>
+  					{this.dateToString(this.props.createdAt)}
+  				</td>
+          <td>
+            {this.dateToString(this.props.updateAt)}
+          </td>
+          <td>
+            {this.props.name}
+          </td>
+
+          <td>
+            <Book cursor='pointer' onClick= {()=> this.props.onClick(selectedProject)}></Book>
+          </td>
+  			</tr>
+      </tbody>
+    );  // return
+  } //render
+} // ProjectRow
 
 ProjectRow.propTypes = {	// validate props type
   name: PropTypes.string.isRequired,

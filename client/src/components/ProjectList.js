@@ -49,22 +49,21 @@ export class ProjectList extends Component {
 						</tr>
 	            		<tr>
 	            			<th>Created Date</th>
+                    <th>Updated Date</th>
 	            			<th>Project Name</th>
-							      <th>Techical Mastery Status</th>
-                    <th>Safety Status</th>
-                    <th>Cyber Security Status</th>
-                    <th>Development management mastery status</th>
+							      
+                    <th>Show History</th>
 	            		</tr>
 
 	            	</thead>
 
-	            	<tbody>
-	            		{this.filteredProjects().map((project, i) =>
-                  <ProjectRow key={i} onClick={this.onProjectClick}
-                        {...project}/>
-                 )}
-	            	</tbody>
+
+            		{this.filteredProjects().map((project, i) =>
+                <ProjectRow key={i} onClick={this.onProjectClick}
+                      {...project}/>
+               )}
 				</table>
+
 				<ProjectChart {...this.state.selectedProject}/>
 			</div>
     );
