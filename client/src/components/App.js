@@ -4,6 +4,7 @@ import { ProjectCount } from './ProjectCount';
 import { AddProjectForm } from './AddProjectForm';
 import { Menu } from './Menu';
 import * as api from '../api';
+import * as _ from 'lodash';
 
 export class App extends Component {
   constructor(props) {
@@ -31,7 +32,6 @@ export class App extends Component {
 
   addProject(newProject) {    // add a project to current state
     api.postProject(newProject).then(res => {
-      //console.log(res);
       this.setState({
         allProjects: [
          ...this.state.allProjects,
@@ -39,7 +39,36 @@ export class App extends Component {
         ]
       });
     });
-  }
+  } //addProject
+
+  deleteProject = (projectId) => {
+    //console.log(this.state);
+    let allProjs = this.state.allProjects;
+    api.deleteProject(projectId).then(res => {
+      _.remove(allProjs, project => {
+        return project['_id'] == res['_id'];
+      }); //remove
+      this.setState({
+        allProjects: allProjs
+      }); //setState
+      //console.log(newProjs);
+    });  //then
+  } // deleteProject
+
+  updateProject = (projectId, updatedProject) => {
+    //console.log(this.state);
+    let allProjs = this.state.allProjects;
+    api.updateProject(projectId, updatedProject).then(res => {
+      let index = _.findIndex(allProjs, project => {
+        return project['_id'] == res['_id'];
+      }); //remove
+      allProjs[index] = res;
+      this.setState({
+        allProjects: allProjs
+      }); //setState
+      //console.log(newProjs);
+    });  //then
+  } // updateProject
 
   render() {
     return (
@@ -56,11 +85,15 @@ export class App extends Component {
     (this.props.location.pathname === '/add-project') ?
        <AddProjectForm onNewProject = {this.addProject}/> :
        (this.state.allProjects.length > 0) ?
-       <ProjectList projects={this.state.allProjects}
-          filter={this.props.params.filter}/> :
-          <p>No Porject/ Lost Connection</p>
+       <ProjectList
+         projects={this.state.allProjects}
+         filter={this.props.params.filter}
+         onDelete = { this.deleteProject }
+         onUpdate = { this.updateProject }
+       /> :
+       <p>No Porject/ Lost Connection</p>
       }
-		   </div>
+		  </div>
     );
   }
 }

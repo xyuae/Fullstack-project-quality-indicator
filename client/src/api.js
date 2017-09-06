@@ -16,3 +16,13 @@ export const postProject = (newProject) => {
   return axios.post('api/projects', newProject)
               .then(res => res.data);
 };
+
+export const deleteProject = (projectId) => {
+  return axios.delete(`api/projects/${projectId}`)
+              .then(res => res.data);
+};
+
+export const updateProject = (projectId, updatedProject) => {
+  return axios.put(`api/projects/${projectId}`, updatedProject)
+              .then(res => res.data);
+};

@@ -8,24 +8,34 @@ export class ProjectResume extends Component {
 	render() {
 		return(
 			<div>
-				<th>Techical Mastery Status</th>
-				<th>Safety Status</th>
-				<th>Cyber Security Status</th>
-				<th>Development management mastery status</th>
-			</div>
+				<table>
+					<thead>
+						<tr>
+							<th>Techical Mastery Status</th>
+							<th>Safety Status</th>
+							<th>Cyber Security Status</th>
+							<th>Development management mastery status</th>
+						</tr>
+					</thead>
 
-			<td>
-				{this.decimalToPercent(this.props.technical_mastery_status.score)}
-			</td>
-			<td>
-				{this.decimalToPercent(this.props.safety_status.score)}
-			</td>
-			<td>
-				{this.decimalToPercent(this.props.cyber_status.score)}
-			</td>
-			<td>
-				{this.decimalToPercent(this.props.development_mastery_status.score)}
-			</td>
+					<tbody>
+						<tr>
+							<td>
+								{this.decimalToPercent(this.props.technical_mastery_status.score)}
+							</td>
+							<td>
+								{this.decimalToPercent(this.props.safety_status.score)}
+							</td>
+							<td>
+								{this.decimalToPercent(this.props.cyber_status.score)}
+							</td>
+							<td>
+								{this.decimalToPercent(this.props.development_mastery_status.score)}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		);
 	}
 }
