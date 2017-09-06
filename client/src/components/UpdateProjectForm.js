@@ -1,78 +1,42 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-/*
-UI design for project information input form
-*/
-// stateless Component with refs as callbacks function
 
-export class AddProjectForm extends Component{
+// Update From component
+
+export class UpdateProjectForm extends Component{
   constructor(props) {
     super(props);
+    let { name, _id, safety_require, cyber_require, updateAt, technical_mastery_status,
+        safety_status, cyber_status, development_mastery_status} = this.props;
     this.state = {
-      createdAt: '',
-      updateAt: '',
-      name: '',
-      safety_require: false,
-      cyber_require: false,
-      technical_mastery_status: {
-        specification: {
-          completeness: 4,
-          review_done: 2
-        },
-        archi_global: {
-          completeness: 4,
-          bricks_used: 2,
-          fmea_done: 2,
-          review_done: 2
-        }
-      },
-      safety_status: {
-        well_identified: 2,
-        design_fmea: 2,
-        requirement_from_hw: 2,
-        traceability: 2
-      },
-      cyber_status: {
-        well_identified: 2,
-        verification_report: 2
-      },
-      development_mastery_status: {
-        quality: {
-          quality_plan: 2,
-          regularly_monitored: 3
-        },
-        requirement_org: {
-          management_tool: 2,
-          traceability: 2
-        },
-        development_org: {
-          plan: 4,
-          plan_exist: 2,
-          plan_monitored: 2,
-          review_report: 2
-        },
-        config_management: {
-          management_plan: 4,
-          config_tool: 2,
-          change_tool: 2,
-          version_report: 2,
-          release_plan: 2,
-          config_audit: 2,
-          review_report: 2
-        },
-        design_test_strategy: {
-          verif_plan: 2,
-          verif_report: 2
-        }
-      }
-    };
-  }
+      updateAt: this.dateToString(updateAt),
+      name: name,
+      safety_require: safety_require,
+      cyber_require: cyber_require,
+      technical_mastery_status: technical_mastery_status,
+      safety_status: safety_status,
+      cyber_status: cyber_status,
+      development_mastery_status: development_mastery_status,
+      _id: _id,
+    };  //this.state
+  } //constructor
+  dateToString(date){
+    //console.log(date);
+    date = new Date(date);
+    let year = date.getFullYear();
+    let month = (date.getMonth() + 1 < 10) ? '0' + (date.getMonth() + 1): (date.getMonth() + 1);
+    let day = (date.getDate() < 10) ? '0' + (date.getDate()): date.getDate();
+    //return date.toUTCString();
+    return year + '-' + month + '-' + day;
+  } // dateToString
   handleSubmit = (event) => {	// function for sumbit data
     event.preventDefault();
     //console.log(this.state);
-    this.props.onNewProject(this.state);
-    alert('Project Submitted');
-  };
+    this.props.onUpdateProject(this.state._id, this.state);
+    //this.props.onUpdateProject(this.state);
+    alert('Project Updated');
+    this.props.closeUpdateWindow();
+  };  // handleSubmit
   getCurrentDate() {
     // return the current date in string format of "yy-mm-dd"
     // For example, "2017-08-18"
@@ -81,7 +45,7 @@ export class AddProjectForm extends Component{
     var month = (now.getMonth() + 1 < 10) ? '0' + (now.getMonth() + 1) : (now.getMonth() + 1);
     var date = now.getDate();
     return year + '-' + month + '-' + date;
-  }
+  } // getCurrentDate
   handleInputChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -91,7 +55,7 @@ export class AddProjectForm extends Component{
     this.setState({
       [name]: value
     });
-  };
+  };  // handleInputChange
   handleSecondaryInputChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -104,7 +68,7 @@ export class AddProjectForm extends Component{
     this.setState({
       updateObject
     });
-  };
+  };  // handleSecondaryInputChange
   handleThirdLevelInputChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -119,12 +83,11 @@ export class AddProjectForm extends Component{
     this.setState({
       updateObject
     });
-
-  };
+  };  // handleThirdLevelInputChange
   render() {
     return (
-      <div className='form'>
-      <form onSubmit={this.handleSubmit} className='add-project-form'>
+      <div className='update-project'>
+      <form onSubmit={this.handleSubmit} className='update-project-form'>
 				<label htmlFor='projectName'> Project name</label>
 				<input id='projectName'
           name='name'
@@ -136,15 +99,6 @@ export class AddProjectForm extends Component{
 				 </input>
          <br/>
 
-				<label htmlFor='createdAt'>Create date</label>
-				<input id='createdAt'
-           type='date'
-           required
-           name='createdAt'
-           value={this.state.createdAt}
-           onChange={this.handleInputChange}/>
-         <br/>
-
 				 <label htmlFor='updateAt'>Update date</label>
 				 <input id='updateAt'
 	          type='date'
@@ -152,7 +106,7 @@ export class AddProjectForm extends Component{
 	          name='updateAt'
 	          value={this.state.updateAt}
 	          onChange={this.handleInputChange}/>
-          <br/>
+         <br/>
 
          <div>
            <input
@@ -164,7 +118,7 @@ export class AddProjectForm extends Component{
            <label htmlFor='safety_require'>
              Do you have Saftey Certification Requirement in your project?
            </label>
-       </div>
+         </div>
 
 				<div>
 					<input id='cyber_require'
@@ -525,6 +479,6 @@ export class AddProjectForm extends Component{
   }
 }
 
-AddProjectForm.propTypes = {	// validate properties type
-  onNewProject: PropTypes.func.isRequired,
+UpdateProjectForm.propTypes = {	// validate properties type
+  onUpdateProject: PropTypes.func.isRequired,
 };

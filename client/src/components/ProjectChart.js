@@ -15,15 +15,15 @@ export class ProjectChart extends Component {
     };
   }
   toPercent = (number) => number*100;
-  componentWillReceiveProps =(nextProps) => {
-    if (!nextProps.history) return;
+  componentWillMount =() => {
+    //if (!nextProps.history) return;
     //console.log('pass test');
     let technical_history = Array();
     let safety_history = Array();
     let cyber_history = [];
     let development_history = Array();
-    for (let i = 0; i < nextProps.history.length; i++){
-      let history = nextProps.history[i];
+    for (let i = 0; i < this.props.history.length; i++){
+      let history = this.props.history[i];
       let date = new Date(history.updateAt);
       date = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
       technical_history.push(Array(date, this.toPercent(history.technical_mastery_status)));
@@ -40,7 +40,7 @@ export class ProjectChart extends Component {
         text: 'Resume History'
       },
       subtitle: {
-        text: 'Project Name: ' + nextProps.name
+        text: 'Project Name: ' + this.props.name
       },
       xAxis: {
         type: 'datetime',
@@ -94,12 +94,10 @@ export class ProjectChart extends Component {
   }
   render() {
     //console.log(this.props);
-    if (!this.props.name) {
-      return null;
-    }
+    //console.log(this.state.option);
     return (
      <ReactHighcharts config={this.state.option}/>
-    );
+    );  //return
 
   }
 }

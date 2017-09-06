@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types';
 import { Link } from 'react-router';
 import { ProjectChart } from './ProjectChart';
 import React, { Component } from 'react';
+import '../stylesheets/style.css';
 /*
 Create a table of Project,
 presenting the date: date, name: string,
@@ -30,10 +31,21 @@ export class ProjectList extends Component {
     });
   };
   render() {
+    let filteredProjs = this.props.allProjects;
+
+    filteredProjs = this.filteredProjects().map((project, index) =>{
+      return <ProjectRow
+                key={index}
+                onShowHistory={this.onProjectClick}
+                onDelete={this.props.onDelete}
+                onUpdate={this.props.onUpdate}
+                whichProject = { project }
+                {...project}/>; //return
+    }); //map
     return (
      <div className='project-list'>
 				<table>
-	          <thead>
+          <thead>
 						<tr>
 							<td colSpan={4}>
 								<Link to='/list-projects'>
@@ -47,25 +59,10 @@ export class ProjectList extends Component {
 								</Link>
 							</td>
 						</tr>
-	            		<tr>
-	            			<th>Created Date</th>
-	            			<th>Project Name</th>
-							      <th>Techical Mastery Status</th>
-                    <th>Safety Status</th>
-                    <th>Cyber Security Status</th>
-                    <th>Development management mastery status</th>
-	            		</tr>
+          </thead>
+        </table>
+      	<ul className='item-list media-list'>{filteredProjs}</ul>
 
-	            	</thead>
-
-	            	<tbody>
-	            		{this.filteredProjects().map((project, i) =>
-                  <ProjectRow key={i} onClick={this.onProjectClick}
-                        {...project}/>
-                 )}
-	            	</tbody>
-				</table>
-				<ProjectChart {...this.state.selectedProject}/>
 			</div>
     );
   }
