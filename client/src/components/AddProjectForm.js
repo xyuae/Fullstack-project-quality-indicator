@@ -69,8 +69,9 @@ export class AddProjectForm extends Component{
   }
   handleSubmit = (event) => {	// function for sumbit data
     event.preventDefault();
-    console.log(this.state);
+    //console.log(this.state);
     this.props.onNewProject(this.state);
+    alert('Project Submitted');
   };
   getCurrentDate() {
     // return the current date in string format of "yy-mm-dd"
