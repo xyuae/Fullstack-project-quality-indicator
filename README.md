@@ -4,6 +4,9 @@
 ## Introduction
 The Quality Indicator, which measures the firmware quality status during and at the end of the project life cycle, are composed of “DO” data and “END IT” data. Currently, the Project Quality Indicator is documented in Excel. However, the excel version lacks flexibility in maintenance and expandability. In addition, the quality indicator should have the capability to be integrated into the quality state model for future expansion. Therefore, a web-based application that record and present the project quality data is required.
 
+The application is deployed using Heroku at `https://express-quiality-indicator.herokuapp.com/#/`
+. The mongodb is not deployed yet due to verification.
+
 __Functional requirement__
 1.	CRUD API of Project Information
 2.  Calculate project quality indicator
@@ -39,6 +42,9 @@ npm start
 	- reorganized project structure
 - 8/28 - 9/8: Querying mongo database and Authentication
 - Milestone: Query and User authentication function from the server.
+  - Completed CRUD function for project API and frontend
+  - Design UI style to meet business demand
+  -  
 
 ## To do
 - build and query MongoDB database

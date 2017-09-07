@@ -6,7 +6,7 @@ import './stylesheets/index.scss';
 import { App } from './components/App';
 //import { App } from './components/App';
 import { Whoops404 } from './components/Whoops404';
-import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import Layout from './components/common/Layout';
 import ContactPage from './components/contact/ContactPage';
 import AboutPage from './components/about/AboutPage';
@@ -15,7 +15,7 @@ import { LoginPage } from './components/auth/LoginPage';
 window.React = React;
 
 render(
-	<Router history={hashHistory}>
+	<Router history={browserHistory}>
 		<Route path='/' component={Layout}>
 			<IndexRoute component={App}/>
 			<Route path='list-projects' component={App}>
