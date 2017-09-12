@@ -44,7 +44,7 @@ npm start
 - Milestone: Query and User authentication function from the server.
   - Completed CRUD function for project API and frontend
   - Design UI style to meet business demand
-  - [Docker](https://docs.docker.com/engine/reference/builder/#usage) 
+  - [Docker](https://docs.docker.com/engine/reference/builder/#usage)
 
 ## To do
 - build and query MongoDB database
@@ -55,6 +55,7 @@ npm start
 - JSCS: [convert jscs into eslint](https://eslint.org/blog/2016/04/welcoming-jscs-to-eslint)
 - [Node, react web resource](https://www.scotch.io/)
 - Build depolyable system with Mern and Electrode
+- [Polar Spider chart](https://code.hcharts.cn/demos/hhhhi6)
 
 ## Resource
 - [My note on middleware/nodejs](./study/note.md)

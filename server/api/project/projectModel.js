@@ -127,7 +127,7 @@ var ProjectSchema = new Schema({
     // Pre-verification test report
     pre_verification_test: {
       score: {type: Number, min: 0, max: 1, required: true},
-      plan: { type: Number, min: 1, max: 4, default: 4},
+      plan: {type: Number, min: 1, max: 4, default: 4},
       test_report: { type: Number, min: 1, max: 2, default: 2},
     } // pre_verification_test
   },  // technical_mastery_status
@@ -357,7 +357,7 @@ ProjectSchema.methods = {
           + ram_consumption + flash_consumption;
   },  // technical_mastery_status_integration_test
   technical_mastery_status_pre_verification_test: function(pre_verification_test) {
-    var plan = [null, 0.5, 0.45, 0.15][pre_verification_test.plan];
+    var plan = [null, 0.5, 0.45, 0.15, 0][pre_verification_test.plan];
     var test_report = [null, 0.5, 0][pre_verification_test.test_report];
     return plan + test_report;
   },  // technical_mastery_status_pre_verification_test

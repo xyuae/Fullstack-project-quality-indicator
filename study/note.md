@@ -67,3 +67,8 @@ So in terms of IT pro, there's two areas inteh Cloud that are most generally con
 
 ## Dev
 Developers and DBAs are often involved in building of enterprise-level cloud data pipelines, which involves use of multiple types of databses, which can be relational, no sql, hadoop, or the newer data lakes. Developers and DBASs are sometimes also involved in working with or becoming cloud data scientiests. i've seen several DBA who are really interested in, or had actually a backgorund in, staticstic, taht when they made a career mvoe from managing databases on-premise to building data piplines and doing dta science, or predictive analysitc against them.
+
+## Events
+Many objects in Node emit events: a `fs.readStream` emits an event when the file is opened. All objects which emit evetns are instances of events.EventEmitter. You can access this module by doing: `require(events)`,
+
+Typically, event names are represented by a camel-cased string, however, there aren't any strict restricitons on that, as any string will be accpted.

@@ -186,7 +186,8 @@ export class AddProjectForm extends Component{
 
                 <select value={this.state.technical_mastery_status.specification.completeness}
                   onChange={this.handleThirdLevelInputChange}
-      						name='technical_mastery_status.specification.completeness'>
+      						name='technical_mastery_status.specification.completeness'
+                  disabled={true}>
                   <option value = {1}>Complete</option>
                   <option value = {2}>Minor information missing</option>
                   <option value = {3}>Major information missing</option>
