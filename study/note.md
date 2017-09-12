@@ -53,3 +53,17 @@ We can use process.env.NODE_ENV the variable to tell our applicaiton what enviro
 
 ## Data modeling
 We can use schemas in mongoose to add some structure and validations to our data. Mongo does not need schemas though. We also need some sort of relationships with our data. For example, users creating posts and posts having categories and belonging to users. Mongoose makes this simple.
+
+## Cloud certifications
+The new library for Hadoop, based on the open source apache Spark has been commericalized as a distribution called, Databricks, and because people want to process data via distributed Hadoop style processing not only on cloud, but they also want to be able to do taht using memory in the cloud that's Spart, so it's a lot faster. So, databricks is particularly hot in certain protocols like Adtech, Biotech. Protocols were a lot of data, huge volume so beyond terabyes, petabytes, and even exobytes of data so just really some of the top volumes in the world is being used by Sparks.
+
+Really exciting time, its amount of data it can process but it requires very different technologies and deep understanding of how they actually work under the hood. So a lot of times, these companies require certification before they'll look at hiring you. In addition to that, there's one generic cloud certificaiton that's non-vendor specific that I htink is really valuable. It's called, the certificate of cloud security knowledge. As I mentioned earlier in this course, having proper security in the lcoud is an often overlooked area and i think it is just a hot career area in general and i've known a lot of network engieners that are really, interestly, find out that this is an opprtunity, so I wanted to include it.
+
+Now just to round out this section of the course because I've talked about so many different clouds and so many different certifications, it might be a little difficult to say which ones going to be for me.
+
+## IT pro
+If your current job is an IT pro or a network administrator, you have a couple of options for a Cloud-based IT Pro job. Those are normally called cloud DevOps. So, this just seems to be a new type of terminology that reflects the fact taht the teams tend to be more integrated with developers and the network admins, literally working side by side, because someitmes the cloud services actually aren't available locally, so you have to actually dev and test on the Cloud.
+So in terms of IT pro, there's two areas inteh Cloud that are most generally considered career path destinations. The first is Cloud Devops. The second is a cloud security expert.  
+
+## Dev
+Developers and DBAs are often involved in building of enterprise-level cloud data pipelines, which involves use of multiple types of databses, which can be relational, no sql, hadoop, or the newer data lakes. Developers and DBASs are sometimes also involved in working with or becoming cloud data scientiests. i've seen several DBA who are really interested in, or had actually a backgorund in, staticstic, taht when they made a career mvoe from managing databases on-premise to building data piplines and doing dta science, or predictive analysitc against them.

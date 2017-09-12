@@ -82,8 +82,55 @@ var ProjectSchema = new Schema({
         max: 2,
         default: 2
       }
-    }
-  },
+    },  // arch_global
+    // Detailed Design includes
+    // Detailed design documents completeness
+    detailed_design: {
+      score: {type: Number, min: 0, max: 1, required: true},
+      completeness: { type: Number, min: 1, max: 4, default: 4},
+    },  // detailed_design
+    // Code includes
+    // warning
+    // misra coding rules verificaiton
+    // maintainability SQuORE evaluation
+    // Static code analysis verificaiton?
+    // Unit test and code coverage done?
+    // and Code review done?
+    code: {
+      score: {type: Number, min: 0, max: 1, required: true},
+      warning: { type: Number, min: 1, max: 2, default: 2},
+      misra_verification: { type: Number, min: 1, max: 3, default: 3},
+      maintainability_evaluation: { type: Number, min: 1, max: 3, default: 3},
+      static_verification: { type: Number, min: 1, max: 3, default: 3},
+      unit_test_code_coverage: { type: Number, min: 1, max: 4, default: 4},
+      code_review: { type: Number, min: 1, max: 2, default: 2},
+    },  // code
+    // Integration test includes
+    // Integratio test plan completenss?
+    // Integration test done (report)?
+    // CPU worload measured?
+    // CPU worload measured?
+    // Stack consumption measured?
+    // RAM consumption measured?
+    // FLash consumption measured?
+    integration_test: {
+      score: {type: Number, min: 0, max: 1, required: true},
+      completeness: { type: Number, min: 1, max: 4, default: 4},
+      test_done: { type: Number, min: 1, max: 2, default: 2},
+      cpu_workload: { type: Number, min: 1, max: 2, default: 2},
+      stack_consumption: { type: Number, min: 1, max: 2, default: 2},
+      ram_consumption: { type: Number, min: 1, max: 2, default: 2},
+      flash_consumption: { type: Number, min: 1, max: 2, default: 2},
+    }, // integration_test
+    // Pre-verification test includes
+    // Pre-verification plan
+    // Pre-verification test report
+    pre_verification_test: {
+      score: {type: Number, min: 0, max: 1, required: true},
+      plan: { type: Number, min: 1, max: 4, default: 4},
+      test_report: { type: Number, min: 1, max: 2, default: 2},
+    } // pre_verification_test
+  },  // technical_mastery_status
   /*
   Safety Status is composed of
   safety functions well identified,
@@ -274,48 +321,89 @@ ProjectSchema.methods = {
     return [null, 0.15, 0][index];
   },
   technical_mastery_status_specification: function(specification) {
-    //console.log(specification);
     var completeness = [null, 0.8, 0.6, 0.4, 0][specification.completeness];
     var review_done = this.boolean_02(specification.review_done);
     return completeness + review_done;
-  },
+  },  // technical_mastery_status_specification
   technical_mastery_status_archi_global: function(architecture) {
     var completeness = [null, 0.45, 0.35, 0.09, 0][architecture.completeness];
     var bricks_used = this.boolean_02(architecture.bricks_used);
     var fmea_done = this.boolean_02(architecture.fmea_done);
     var review_done = this.boolean_015(architecture.review_done);
-    //console.log(architecture);
     return completeness + bricks_used + fmea_done + review_done;
-  },
+  },  // technical_mastery_status_archi_global
+  technical_mastery_status_detailed_design: function(detailed_design) {
+    var completeness = [null, 1, 0.8, 0.5, 0][detailed_design.completeness];
+    return completeness;
+  },  // technical_mastery_status_detailed_design
+  technical_mastery_status_code: function(code) {
+    var warning = [null, 0.1, 0][code.warning];
+    var misra_verification = [null, 0.2, 0.1, 0][code.misra_verification];
+    var maintainability_evaluation = [null, 0.1, 0.05, 0][code.maintainability_evaluation];
+    var static_verification = [null, 0.2, 0.1, 0][code.static_verification];
+    var unit_test_code_coverage = [null, 0.25, 0.17, 0.08, 0][code.unit_test_code_coverage];
+    var code_review = [null, 0.15, 0][code.code_review];
+    return warning + misra_verification + maintainability_evaluation + static_verification
+          + unit_test_code_coverage + code_review;
+  },  // technical_mastery_status_code
+  technical_mastery_status_integration_test: function(integration_test) {
+    var completeness = [null, 0.6, 0.5, 0.2, 0][integration_test.completeness];
+    var test_done = [null, 0.25, 0][integration_test.test_done];
+    var cpu_workload = [null, 0.05, 0][integration_test.cpu_workload];
+    var stack_consumption = [null, 0.05, 0][integration_test.stack_consumption];
+    var ram_consumption = [null, 0.025, 0][integration_test.ram_consumption];
+    var flash_consumption = [null, 0.025, 0][integration_test.flash_consumption];
+    return completeness + test_done + cpu_workload + stack_consumption
+          + ram_consumption + flash_consumption;
+  },  // technical_mastery_status_integration_test
+  technical_mastery_status_pre_verification_test: function(pre_verification_test) {
+    var plan = [null, 0.5, 0.45, 0.15][pre_verification_test.plan];
+    var test_report = [null, 0.5, 0][pre_verification_test.test_report];
+    return plan + test_report;
+  },  // technical_mastery_status_pre_verification_test
   cal_technical_mastery_status: function(technical_mastery_status) {
-    var {specification, archi_global} = technical_mastery_status;
-    // console.log(archi_global);
+    var {specification, archi_global, detailed_design, code, integration_test, pre_verification_test} = technical_mastery_status;
     var value1 = this.technical_mastery_status_specification(specification);
-
     var value2 = this.technical_mastery_status_archi_global(archi_global);
-    //console.log(value2);
+    var value3 = this.technical_mastery_status_detailed_design(detailed_design);
+    var value4 = this.technical_mastery_status_code(code);
+    var value5 = this.technical_mastery_status_integration_test(integration_test);
+    var value6 = this.technical_mastery_status_pre_verification_test(pre_verification_test);
+
     this.set(
-     {
-      technical_mastery_status:
-      {
-        specification: {
-          score: value1
-        },
-        archi_global: {
-          score: value2
+       {
+        technical_mastery_status:
+        {
+          specification: {
+            score: value1
+          },
+          archi_global: {
+            score: value2
+          },
+          detailed_design: {
+            score: value3
+          },
+          code: {
+            score: value4
+          },
+          integration_test: {
+            score: value5
+          },
+          pre_verification_test: {
+            score: value6
+          },
         }
       }
-    }
-    );
+    );  // this.set
     this.set(
-     {
-      technical_mastery_status:
-      {
-        score: dotProdcut([0.5, 0.5], [value1, value2])
+       {
+        technical_mastery_status:
+        {
+          score: dotProdcut([0.5, 0.5], [value1, value2])
+        }
       }
-    }
     );
-  },
+  },  // cal_technical_mastery_status
   cal_safety_status: function(safety_status) {
     var {well_identified, design_fmea, requirement_from_hw, traceability} = safety_status;
     var score = this.boolean_03(well_identified) +
@@ -323,23 +411,23 @@ ProjectSchema.methods = {
          this.boolean_02(requirement_from_hw) +
          this.boolean_02(traceability);
     this.set(
-     {
-      safety_status: {
-        score: score
+       {
+        safety_status: {
+          score: score
+        }
       }
-    }
-    );
+    );  // this.set
   },
   cal_cyber_status: function(cyber_status) {
     var {well_identified, verification_report} = cyber_status;
     var score = this.boolean_05(well_identified) + this.boolean_05(verification_report);
     this.set(
-     {
-      cyber_status: {
-        score: score
+       {
+        cyber_status: {
+          score: score
+        }
       }
-    }
-    );
+    );  // this.set
   },
   development_mastery_status_quality: function(quality) {
     var {quality_plan, regularly_monitored} = quality;

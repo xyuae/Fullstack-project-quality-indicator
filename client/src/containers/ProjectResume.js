@@ -6,6 +6,8 @@ export class ProjectResume extends Component {
     return Math.floor(number * 100) + '%';
   }
 	render() {
+		let categories = ['Specification', 'Architecture & Global Design', 'Detailed design', 'Code', 'Integration test', 'Pre-varification test', 'Safety', 'Cyber Security', 'Quality', 'Requirement organization', 'Developement organization', 'Configuration management', 'Design test strategy'];
+		let data = [this.];
 		return(
 			<div>
 				<table>

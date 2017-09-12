@@ -8,7 +8,7 @@ import Book from 'react-icons/lib/fa/book';
 //import Calendar from 'react-icons/lib/fa/calendar';
 import { PropTypes } from 'prop-types';
 import React, { Component } from 'react';
-import { ProjectResume } from './ProjectResume';
+import { ProjectResume } from '../containers/ProjectResume';
 import { ProjectChart } from './ProjectChart';
 import { UpdateProjectForm} from './UpdateProjectForm';
 
