@@ -44,7 +44,6 @@ npm start
 - Milestone: Query and User authentication function from the server.
   - Completed CRUD function for project API and frontend
   - Design UI style to meet business demand
-  - [Docker](https://docs.docker.com/engine/reference/builder/#usage)
 
 ## To do
 - build and query MongoDB database
@@ -61,4 +60,7 @@ npm start
 - [My note on middleware/nodejs](./study/note.md)
 - [Lynda Node js tutorial](https://www.lynda.com/Node-js-tutorials/)
 - [My MongoDB notes](./study/mongodb.md)
+- [MERN stack](https://resources.mongodb.com/getting-started-with-mongodb/the-modern-application-stack-part-1-introducing-the-mean-stack)
+- [MongoDB online course](https://university.mongodb.com/)
+- [Docker](https://docs.docker.com/engine/reference/builder/#usage)
 - [Github](https://www.udacity.com/wiki/ud775)
