@@ -9,6 +9,37 @@ It starts and it schedules programs, it says what's allowed to run, what's when,
 - Allocate resources, memory, CPU, network, and so on
 - Create containers by Docker configuring the kernal
 
+## Registry
+As we start exploring building larger sysetms with Docker, one of the first question that often comes up is, where's my data? is it safe? Many companies choose to run their own Docker registry, so they can know that their data is safe and somewhere they can protect it. So, it's just a program. You can run it anywhere you run other programs using exisiting infrasturcture. It stores layers, images, keeps track of them, stores the tags, generally the metadata around the images, along iwth the images, along with the images. And it's just a service that listens on port 5000 for instruction like, push this image, load this image from a dist, or search for images containing these key words.
+
+It also keeps track of who's allowed to log in, provided you've configured that. There are a couple of popular choices. There's an official docekr registry produced by Docekr, the company. And the popular maven caching repo, nexus, also happends to provided in the newest versions, a Docker repo bulit in. So there's a good chance you already have a Docker registry running in your organization.  
+`docker run -d -p 5000:5000 --restar always --name registry registry:2`
+`docker tag ubuntu:14.04 localhost:5000/mycompany/my-ubuntu:`
+
+The Registry is a stateless, highly scalable server side application that stores and lets you distribute Docekr images. The registry is open-source, under the permissive Apache licence.
+
+A registry is a storage and content delivery system, holding named Docker images, available in different tagged versoins.
+User interact with a re
+You should use the Registry if you want to
+- tightly control where your images are being stroed
+- fully own your images distribution pipeline
+- integrate image storage and dsitriution tighly into your in-house development workflow.
+
+Start your registry:
+`docerk run -d -p 5000:5000 --name registry registry:2`
+
+pull or build some image from the hub
+`docker pull ubuntu`
+Tag the image so that it points to your registry
+`docker tag ubuntu localhost:5000/myfirstimage`
+Push it
+`docker push localhost:5000/myfirstimage`
+Pull it back
+`docker pull localhost:5000/myfirstimage`
+Stop your registry and remove all data
+`docker stop registry && docker rm -v registry`
+
+
 ## Docker is
 - Program written in Go-an upcoming systems language
 - Manages kernel features
