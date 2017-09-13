@@ -18,6 +18,23 @@ It also keeps track of who's allowed to log in, provided you've configured that.
 
 The Registry is a stateless, highly scalable server side application that stores and lets you distribute Docekr images. The registry is open-source, under the permissive Apache licence.
 
+Storage itself is delegated to drivers. The default storage drvier is the local posix filesytem, which is suitable for development or small deployments. Additional cloud-based stroage drivers like S3, Microsoft Azure, OpenStack Swift, and Aliyun OSS are also supported. People looking into using other stroage backends may do so by writing their own driver implementing the Storage API.
+
+Since securing access to your hosted images is paramount, the Registry natively supports TLS and basic authentication.
+
+The Registry GitHub repository includes additional informatoin about advanced authentication and authorization methods. Only very large or public deployments are expected to extend the Registry in this way.
+
+Finally, the Registry ships with a robust notification system, calling webhooks in response to activity, and both extensive logging and reporting, mostly useful for large installations that want to collect metrics. 
+
+## Understanding image naming
+Image names as used in typical docker commands reflect their origin:
+`docekr pull ubuntu` is a shortcut for the longer `docker pull docker.io/library/ubuntu` commnad
+`docker pull myregistrydomain:port/foo/bar` instructs docker to contact the registry located at myregistrydomain:port to find the image foo/bar
+
+## Use cases
+Running your own registry is a great solution to integrate with and complement your CI/CD system. In a typical workflow, a commit to your source revision control system would triger a build on your CI system, which would then push a new image to your Registry if the build is successful. A notificaiton from the Registr would then trigger a deployment on a staging environment, or notify other systems that a new image is available.
+
+
 A registry is a storage and content delivery system, holding named Docker images, available in different tagged versoins.
 User interact with a re
 You should use the Registry if you want to
@@ -69,6 +86,23 @@ ECS is a lot more powerful than simple docker hosting. There are easier to use o
 - gives containers names
 - Attaches containers to ELBS
 - Scheules tasks
+
+## Orchastration
+Let's breifly touch on how large systems are being built using Docker today. So just to start with, one container is about as useful as one hand clapping. It's cool, it's philosophicaly neat, but most people want more. There are many options out there for orchestrating large systems of Docekr containers. We're just going to touch on a few, and give you a plac eot strat. Orchestration sytems, start your containers, keep them running, and restart them if they fail.
+
+They allow the containers to find each other. If a container gets restarted, all the machines that were connecting to it need to be able to find its replacement. So service discovery is a big part of any Docker orchestration system. And making sure that the ocntainers are running in place wher the resources exist for them to actually do their job. is the storage they need available at that location? Is there enough RAM, is there enough CPU? Is that machine being taken offline for maintenance? Does this container need to be moved somewhere else? So the easiest to get started with, and the simplest, is Docker Compose.
+
+ For single machine coordiantion, this is the de facto standard. In fact, you already have it on your computer. It's designed for testing, development, staging, enerally working on projects that have more than one container, but not for serving them in large scale systems, and not for things that's scaled dynamically. What it does, is it brings up all your containers and volumes, with one command. You just run Docker Compose up, and it starts all your containers. And the great feasture is that it's already included in Docker Tool Box.
+
+To learn more and to get started, head on over to the documentation page for it. And in the Getting started section, there's a nice little tutorial.
+
+Now for larer systems, there are man choices. i'm going to touch on a couple of them here and talk about how to compare them. Kubernets brings a couple of ideas that are failry common, to all of the orchestration systems but expressed differently everywhere.
+So pods give you approximately as much as Docker Compose, but it's dynamically distributed, Kubernetes finds a place to run it, and it provides orchestration and service discovery and all the other stuff around these pods. Kubernetes has the idea of services, which makes pods discoverable by others, accessible to others. If a connection to a pod, that's part of a service, gets restarted somewhere, then that service will redirect the traffic to the new instance.
+
+Another great option is the Amazon EC2 container service, or ECS. This service uses an analogous vocabulary, but with a slight different twist to each part. task definitions provide all the inforamtion required to start a container and a set of containers that are designed to run together. it's somewhat analogous to a pod, a little bit, in Kubernetes it's all the information required for services that will run together on the same machine.
+
+ECS has a bunc of advantages too, it ties into the exisiting Amazon infrastructure very well. So Amazon load balancers tie into ECS services to make your traffic available to the internet using the existing systems. You create your own instances in AWS, you have lots of control over that. And once you've got your instance running, you run an agent on them and cause them to join the cluster.
+
 
 ## Dockerfile reference
 Docker can build images automatically by reading the instructions from a Dockerfile. A Docekrfile is a text document that contains all the commands a user could call on the command line to assemble an image. Using docker build users can create an automated build that executes sevvveral command-line instructions in succession.
