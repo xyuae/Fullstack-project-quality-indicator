@@ -22,10 +22,7 @@ export class ProjectResume extends Component {
 			development_mastery_status.development_org.score,
 			development_mastery_status.config_management.score,
 			development_mastery_status.design_test_strategy.score,
-
-
-
-		];
+		];	// data
 		return(
 			<div>
 				<table>

@@ -7,7 +7,7 @@ import ReactHighcharts from 'react-highcharts';
 A chart showing the change of project satus
 */
 
-export class ProjectChart extends Component {
+export class ProjectPolarSpider extends Component {
   constructor(props){
     super(props);
     this.state = {
