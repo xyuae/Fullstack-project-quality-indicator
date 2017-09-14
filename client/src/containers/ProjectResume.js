@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { ProjectPolarSpider } from '../styled/ProjectResume';
 
 export class ProjectResume extends Component {
 	decimalToPercent(number){
@@ -7,7 +7,20 @@ export class ProjectResume extends Component {
   }
 	render() {
 		let {technical_mastery_status, safety_status, cyber_status, development_mastery_status} = this.props;
-		let categories = ['Specification', 'Architecture & Global Design', 'Detailed design', 'Code', 'Integration test', 'Pre-varification test', 'Safety', 'Cyber Security', 'Quality', 'Requirement organization', 'Developement organization', 'Configuration management', 'Design test strategy'];
+		let categories = ['Specification',
+			 'Architecture & Global Design', 
+			 'Detailed design', 
+			 'Code', 
+			 'Integration test', 
+			 'Pre-varification test', 
+			 'Safety', 
+			 'Cyber Security', 
+			 'Quality', 
+			 'Requirement organization', 
+			 'Developement organization', 
+			 'Configuration management',
+			 'Design test strategy'
+			];	// let categories
 		let data = [
 			technical_mastery_status.specification.score,
 			technical_mastery_status.archi_global.score,
@@ -52,6 +65,10 @@ export class ProjectResume extends Component {
 						</tr>
 					</tbody>
 				</table>
+				<ProjectPolarSpider 
+					data={data}
+					categories={categories}
+				/>
 			</div>
 		);
 	}
