@@ -1,5 +1,27 @@
 ## MongoDB Many-to-Many Relationship Data modeling
 
+## NoSQl
+
+- [2 Demo for Cloudera](www.cloudera.com/Live?)
+
+### Links to Try NoSQL Databases
+- [Try Redis -] (http://try.redis.io/)
+- [Try Columnstore - Hive demo -] (http://blog.cloudera.com/blog/2013/04/demo-analyzing-data-with-hue-and-hive/)
+- [Try Mongo] ( http://try.mongodb.org/)
+- [Try Neo4j - ](http://console.neo4j.org/)
+
+- [SQL Server Columnstore Indexes - ](https://msdn.microsoft.com/en-us/library/dn589807.aspx)
+- [SQL Server In Memory OLTP -](https://msdn.microsoft.com/en-us/library/dn511655.aspx)
+
+- [AWS Cloud -] http://aws.amazon.com/
+- [Googld Cloud -]  (https://cloud.google.com/)
+- [Azure Cloud -]  (http://azure.microsoft.com/en-us/)
+- [Azure Storage Explorers - ](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/03/11/windows-azure-storage-explorers-2014.aspx)
+- [Azure Storage Explorer - ](http://azurestorageexplorer.codeplex.com/)
+- [MongoLab -] (https://mongolab.com/)
+- [GrapheneDB - ](http://www.graphenedb.com/)
+- [AWS Aurora Preview -] (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Preview.html)
+
 ### Introduction
 Implementing a many-to-many relationship in a relational database is not as staright forward as a one-to-many relainship because there is no single commnad to accomplish it. The same holds true for implementing them in mongoDB. As a matter of fact you canno timplement any type of relationship in mongoDB via a commnad. HOwever, having the abibility to stroe arrays in a document does allow you to store the data in a way that is fast to retrieve and easy to maintain and provides you the information to relate two documents in your code.
 
