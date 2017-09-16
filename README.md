@@ -64,3 +64,4 @@ npm start
 - [MongoDB online course](https://university.mongodb.com/)
 - [Docker](https://docs.docker.com/engine/reference/builder/#usage)
 - [Github](https://www.udacity.com/wiki/ud775)
+- [Operating system](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/3_Processes.html)
