@@ -62,7 +62,6 @@ export class ProjectList extends Component {
           </thead>
         </table>
       	<ul className='item-list media-list'>{filteredProjs}</ul>
-
 			</div>
     );
   }

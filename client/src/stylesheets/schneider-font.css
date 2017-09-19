@@ -1,0 +1,19 @@
+
+/*********/
+/* Fonts */
+/*********/
+
+@font-face {
+  font-family: 'Schneider Generics Icons';
+  src: url('../../dist/assets/font/schneider-font.eot'); /* IE9 Compat Modes */
+  src: url('../../dist/assets/font/schneider-font.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../../dist/assets/font/schneider-font.woff') format('woff'), /* Modern Browsers */
+       url('../../dist/assets/font/schneider-font.ttf') format('truetype'); /* Safari, Android, iOS */
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon-schneider:before {
+  font-family: 'Schneider Generics Icons';
+  content: attr(data-icon);
+}

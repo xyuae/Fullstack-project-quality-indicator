@@ -1,9 +1,8 @@
-import { Component } from 'react';
-import { ProjectList } from './ProjectList';
-import { ProjectCount } from './ProjectCount';
-import { AddProjectForm } from './AddProjectForm';
-import { Menu } from './Menu';
-import * as api from '../api';
+import React, { Component } from 'react';
+import { ProjectList } from '../containers/ProjectList';
+import { ProjectCount } from '../containers/ProjectCount';
+import { AddProjectForm } from '../containers/AddProjectForm';
+import * as api from '../utils/api';
 import * as _ from 'lodash';
 
 export class App extends Component {
@@ -12,12 +11,10 @@ export class App extends Component {
     this.state = {
       allProjects: []
     };
-    //this.addDay = this.addDay.bind(this);
     this.addProject = this.addProject.bind(this);   // two-way function binding
-  }
+  } // constructor(props)
   componentDidMount() {
     api.fetchAllProject().then(allProjects => {
-      //console.log(allProjects);
       this.setState({
         allProjects,
       });
@@ -37,12 +34,11 @@ export class App extends Component {
          ...this.state.allProjects,
          res
         ]
-      });
-    });
+      }); // this.setState
+    }); // api.postProject(newProject)
   } //addProject
 
   deleteProject = (projectId) => {
-    //console.log(this.state);
     let allProjs = this.state.allProjects;
     api.deleteProject(projectId).then(res => {
       _.remove(allProjs, project => {
@@ -72,28 +68,23 @@ export class App extends Component {
 
   render() {
     return (
-     <div className='app'>
-			   <Menu />
-			   {(this.props.location.pathname === '/') ?
-     <ProjectCount total={this.countProjects()}
-        cyber_require={this.countProjects(
-            'cyber_require'
-           )}
-        safety_require={this.countProjects(
-            'safety_require'
-           )}/> :
-    (this.props.location.pathname === '/add-project') ?
-       <AddProjectForm onNewProject = {this.addProject}/> :
-       (this.state.allProjects.length > 0) ?
-       <ProjectList
-         projects={this.state.allProjects}
-         filter={this.props.params.filter}
-         onDelete = { this.deleteProject }
-         onUpdate = { this.updateProject }
-       /> :
-       <p>No Porject/ Lost Connection</p>
-      }
+      <div className='app'>
+        {
+          (this.props.location.pathname === '/') ?
+          <ProjectCount total={this.countProjects()}
+                        cyber_require={this.countProjects('cyber_require')}
+                        safety_require={this.countProjects('safety_require')}/> :
+          (this.props.location.pathname === '/add-project') ?
+          <AddProjectForm onNewProject = {this.addProject}/> :
+          (this.state.allProjects.length > 0) ?
+          <ProjectList projects={this.state.allProjects}
+                      filter={this.props.params.filter}
+                      onDelete = { this.deleteProject }
+                      onUpdate = { this.updateProject }
+          /> :
+          <p>No Porject/ Lost Connection</p>
+        }
 		  </div>
-    );
-  }
-}
+    );  // return
+  } // render
+} // class App

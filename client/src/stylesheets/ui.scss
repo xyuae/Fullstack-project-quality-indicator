@@ -88,10 +88,9 @@ progress::-webkit-progress-value {
 div.project-count {
   display: flex;
   flex-wrap: wrap;
-  font-size: 3em;
+  font-size: 1.5em;
   height: calc(100% - 3em);
-  background: linear-gradient(#68c87a, #0d8bcd);
-
+  margin-left: 15%;
 
   > div {
     display: flex;
@@ -134,8 +133,7 @@ div.project-count {
 
 
 div.project-list {
-  height: 50em;
-  overflow-y: scroll;
+  width: 100%;
 
   table {
     caption {
@@ -149,7 +147,7 @@ div.project-list {
     font-family: verdana, sans-serif;
     font-size: 1em;
     left:.5em;
-    //text-align: center;
+    text-align: center;
 
 
     div.link {
@@ -203,7 +201,7 @@ form.update-project-form {
   align-items:stretch;
   height: 60vh;
   display:block;
-  overflow-y: auto;
+  overflow: auto;
 
   >label,
   div {
@@ -293,9 +291,8 @@ form.add-project-form {
   flex-direction: column;
   justify-content: space-around;
   align-items:stretch;
-  height: 60vh;
+  min-height: 60vh;
   display:block;
-  overflow-y: auto;
 
   >label,
   div {
@@ -320,9 +317,9 @@ form.add-project-form {
     margin: inherit;
   }
 
+
   input[type="checkbox"] {
     transform: scale(2);
-    margin: 0;
     padding: 0;
     margin-left: 2em;
     margin-right: 2em;

@@ -29,7 +29,11 @@ module.exports = {
      {
       test: /\.scss$/,
       loader: 'style-loader!css-loader!autoprefixer-loader!sass-loader'
-    }
+    },
+     {
+      test: /\.(png|jg|gif)$/,
+      loader:'url-loader',
+    },  
     ]
   }
 };
