@@ -159,7 +159,7 @@ export class AddProjectForm extends Component{
 
          <div>
            <input
-             id = 'safety_require'
+            id = 'safety_require'
              name='safety_require'
              type='checkbox'
              checked={this.state.safety_require}
