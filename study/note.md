@@ -1,3 +1,13 @@
+Node is very good at consuming data from different sources and transforming it for other applications. Let's put it this way. Node is the ideal platform to provide services of all kinds. Node.js is event-based. It uses an event loop taht applicatoin can load off asynchronous tasks to. The event loop takes care of compleitng the task while the application can proced processing equests. When the task is complete, the event loop pngs back the main applicaiton, then executes a callback function to proceed with the result. 
+
+## Microservices
+Until 20 to 30 years ago, architectures wee strictly monolithic, which means they consisted of one single application . If you want to modify code, you had to check out the whole application from your version control system, and then your change was ready to go into production, it was deployed iwht the whole application. Usually, these applications were also ran on a single server. The program logic tended to be very tighly coupled. This means, if you changed the method of functioning one file, there was a significant chance that your action would affect other parts of the applicaiton. This means that the developer had to have a model of the whole applicaiton in midn when doign any change. When a new developer started to work on something, she needed to first understand how everything was stitched together befroe wrtiing a single line of code. 
+
+Around 2000, there was a paradigm shift. COmputer networks were quite common by then, and architects stated to cretae distributed applicaitons. So, they sliced the applicaitons into logical pieces called services taht exchanged the data over the network. This was called service-oriented architecture, or SOA. The communication between continents was mostly done by a XML.
+
+Still, those logical pieces were quite large and unfortunately, often incorrectly used when some vendors eveloped proprietary ways to transparently call methods over the network, which basically introduced tight coupling again. Coming back to our shopping system example, in the SOAQ applicaiton, you would maybe decouple the display lgoic from the data excess providing methods to fetch all items or to place an order. Such systems were till tighly coupbled, but distributed,which made things rather worse than better. 
+
+Around 2010 the term microservices was coined, while they have much in common with SOA, their aim was simplicity. There is no standard but the set of best practices apply Most importatnt, one microservice should only do one task, like fetching a customer from a backend. It hosuld be possible to devleop and deploy a microservice comletely independent from all other parts of an application. 
 ## Get
 Use bodyparser middleware to access parameter in the url
 ```

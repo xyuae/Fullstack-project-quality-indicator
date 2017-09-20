@@ -1,5 +1,5 @@
 import '../stylesheets/ui.scss';
-import { PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
 export const ProjectCount = ({total, cyber_require,
 							safety_require}) => (

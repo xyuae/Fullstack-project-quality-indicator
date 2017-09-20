@@ -48,13 +48,13 @@ export class ProjectList extends Component {
           <thead>
 						<tr>
 							<td colSpan={4}>
-								<Link to='/list-projects'>
+								<Link to='/project-list'>
 									All Projects
 								</Link>
-								<Link to='/list-projects/safety_require'>
+								<Link to='/project-list/safety_require'>
 									Safety Requirement
 								</Link>
-								<Link to='/list-projects/cyber_require'>
+								<Link to='/project-list/cyber_require'>
 									Cyber Requirement
 								</Link>
 							</td>
@@ -62,7 +62,6 @@ export class ProjectList extends Component {
           </thead>
         </table>
       	<ul className='item-list media-list'>{filteredProjs}</ul>
-
 			</div>
     );
   }

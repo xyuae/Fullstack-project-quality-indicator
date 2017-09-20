@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+
+.ui-icon-logo{
+    background-image: url("../img/favicon.ico");
+    /* Make your icon fit */
+    background-size: 32px 32px;
+}
+.ui-content-comment {
+	font-size: 14px;
+	color: gray;
+}
+
+.loader-bg{
+	height: 330px;
+	filter: Alpha(Opacity=20);
+	-moz-opacity: 0.1;
+	opacity: 0.1;
+	background-color: #000000;
+}
+.paypw-err {
+	text-align:center;
+      color: #DB2929;
+      font-size: 0.95em;
+}
+
+.icon-human {
+  font-size: 100px;
+  color: #009B3E;
+  text-align: center;
+  height: 100px;
+  line-height: 100px;
+
+}
+
+.info-li ul li p {
+  font-size: 14px;
+}
+
+#network .ui-icon { background:  url(../img/network-18.png) 50% 50% no-repeat; background-size: 24px 22px; }

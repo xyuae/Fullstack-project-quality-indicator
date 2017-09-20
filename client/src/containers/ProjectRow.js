@@ -11,7 +11,8 @@ import React, { Component } from 'react';
 import { ProjectResume } from '../containers/ProjectResume';
 import { ProjectChart } from './ProjectChart';
 import { UpdateProjectForm} from './UpdateProjectForm';
-
+import RaisedButton from 'material-ui/RaisedButton';
+//import { ProjectButton } from '../styled/ProjectRow';
 /*
 A row of informaiton in the table ProjectList,
 The ProjectRow component compose the body of the table,
@@ -70,22 +71,27 @@ export class ProjectRow extends Component {
     });
   } // closeUpdateWindow
   render() {
+    const styles = {
+      button: {
+        margin: 12,
+      }
+    };
     let selectedProject = {
       name: this.props.name,
       history: this.props.history
     };  //selectedProject
 
     return (
-      <li className='project-item media'>
-        <div className='media-left'>
-          <Delete className='project-delete'
-            onClick={this.handleDelete}></Delete>
-          <Note className='project-resume'
-            onClick={this.toggleResumeState}></Note>
-          <Update className='project-update'
+      <li className='project-item'>
+        <div className='media-left, ui-btn-text'>
+          <RaisedButton label='Delete' secondary= {true} icon={<Delete/>} style= {styles.button}
+            onClick={this.handleDelete}/>
+          <RaisedButton label='Details' primary = {true} icon={<Note/>} style= {styles.button}
+            onClick={this.toggleResumeState}/>
+          <RaisedButton label='Update' icon={<Update/>} style= {styles.button}
             onClick={this.toggleUpdateFormState}/>
-          <Book className='project-history'
-            onClick={this.toggleHistoryState}></Book>
+          <RaisedButton label='History' icon={<Book/>} style= {styles.button}
+            onClick={this.toggleHistoryState}/>
         </div>
         <div className='project-info mdedia-body'>
           <div className='project-head'>
