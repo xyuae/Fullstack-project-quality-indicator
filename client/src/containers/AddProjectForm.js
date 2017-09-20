@@ -550,6 +550,7 @@ export class AddProjectForm extends Component{
 
 				<button type='submit'>Submit</button>
 			</form>
+      <br/>
       </Container>
      );
   }

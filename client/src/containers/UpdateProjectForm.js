@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Container } from '../styled/AddProjectForm';
 
 // Update From component
 
@@ -86,8 +87,8 @@ export class UpdateProjectForm extends Component{
   };  // handleThirdLevelInputChange
   render() {
     return (
-      <div className='update-project'>
-      <form onSubmit={this.handleSubmit} className='update-project-form'>
+      <div>
+      <form onSubmit={this.handleSubmit} className='add-project-form'>
 				<label htmlFor='projectName'> Project name</label>
 				<input id='projectName'
           name='name'
@@ -147,6 +148,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {4}>No document</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Reviews done?
@@ -157,6 +159,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No review report</option>
                 </select>
               </label>
+              <br/>
           </div>
 
           <div>
@@ -173,6 +176,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {4}>No document</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Bricks used (GAIA, …)?
@@ -183,6 +187,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Design FMEA (robustness oriented) done?
@@ -193,6 +198,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Reviews done?
@@ -203,6 +209,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No review report</option>
                 </select>
               </label>
+              <br/>
           </div>
         </div>
 
@@ -220,6 +227,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Design FMEA (safety oriented)
@@ -230,6 +238,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Requirement from HW
@@ -240,6 +249,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Traceability
@@ -250,6 +260,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
           </div>
         </div>
 
@@ -266,6 +277,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Secure code rules verification report
@@ -276,6 +288,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
           </div>
         </div>
 
@@ -292,6 +305,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Embedded Software Quality activities regularly monitored
@@ -303,6 +317,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {3}>No</option>
                 </select>
               </label>
+              <br/>
           </div>
 
           <div>
@@ -316,6 +331,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Traceability --> source code
@@ -326,6 +342,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
           </div>
 
           <div>
@@ -341,6 +358,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {4}>No document</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Embbedded Software planning is existing
@@ -351,6 +369,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Embbedded Software planning is monitored
@@ -361,6 +380,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Review development plan report
@@ -371,6 +391,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No reveiw</option>
                 </select>
               </label>
+              <br/>
           </div>
 
           <div>
@@ -386,6 +407,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {4}>No document</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Configuration management tool
@@ -396,6 +418,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Change management tool
@@ -406,6 +429,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Version file report
@@ -416,6 +440,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Release code Generation plan
@@ -426,6 +451,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Configuration management audit
@@ -436,6 +462,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No</option>
                 </select>
               </label>
+              <br/>
 
               <label>
                 Review Configuration management plan report
@@ -446,6 +473,7 @@ export class UpdateProjectForm extends Component{
                   <option value = {2}>No reveiw report</option>
                 </select>
               </label>
+              <br/>
           </div>
         </div>
 
@@ -460,6 +488,7 @@ export class UpdateProjectForm extends Component{
                 <option value = {2}>No</option>
               </select>
             </label>
+            <br/>
 
             <label>
               Strategy verification plan report
@@ -470,10 +499,12 @@ export class UpdateProjectForm extends Component{
                 <option value = {2}>No reveiw report</option>
                 </select>
             </label>
+            <br/>
         </div>
 
 				<button type='submit'>Submit</button>
 			</form>
+      <br/>
       </div>
      );
   }
