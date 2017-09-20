@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import NavDrawer from '../components/NavDrawer';
-import { Header, Main, Image, ImageDiv } from '../styled/template';
+import { Header, Main, Image, ImageDiv } from '../styled/Template';
 //import Img from 'react-image';
 import logo from '../../dist/assets/img/schlogo.png';
 
