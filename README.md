@@ -4,20 +4,41 @@
 ## Introduction
 The Quality Indicator, which measures the firmware quality status during and at the end of the project life cycle, are composed of “DO” data and “END IT” data. Currently, the Project Quality Indicator is documented in Excel. However, the excel version lacks flexibility in maintenance and expandability. In addition, the quality indicator should have the capability to be integrated into the quality state model for future expansion. Therefore, a web-based application that record and present the project quality data is required.
 
-The application is deployed using Heroku at `https://express-quiality-indicator.herokuapp.com/#/`
-. The mongodb is not deployed yet due to account verification.
-
 __Functional requirement__
 1.	CRUD API of Project Information
 2.  Calculate project quality indicator
-4.	Record the current status and history of the quality indicator
-5.	Upload and download interface for data in Excel format
+4.	Record the current status and history of the quality
 
-## Design
-The website is about Overview/Add/List view in a single page app.
+The application is deployed using Heroku at `https://express-quiality-indicator.herokuapp.com/#/`
+. The mongodb is not deployed yet due to account verification.
 
-## Methodology
-Build the REST API system using express and mongo db.
+## Project Structure
+The quality management project is implemented in an 2 month period. The purpose is to build an web application that records and presents the project quality information. MERN stack is chosen for developing a front-end back-end separated, one page application, with a horizontally scalable database and backend.
+The node module(libraries) are installed using npm. The npm is managed by the file `package.json` in the root folder. The `package.json` file includes all the node module version required and the script to run the application.
+
+The server runs in the nodejs runtime environment, where you can run JavaScript in the backend. The entrance of backend code is in `./index.js`, which serves the front-end and back-end resources, and listen for http request.  
+
+__Back End__:
+Under the `./server` folder is the code for backend implementation. The entrance is `./server/server.js`, in which the RESTful api is created, mongodb database is connected, and middlewares are hooked. Under this subdirectory the RESTful api is implemented in `./api`; authentication api in `./auth`; configuration in `./config`. Note that the `./middleware` folder contains the global middleware and the `./util` contains utilities code. They are used by the api and authentication services.
+
+__Front End__:
+The `./client/src` folder contains react code that runs in the client browser. As react uses ES6 syntax such as arrow function, it is pre-compiled using babel in webpack into a `bundle.js` file under `./client/assets`. The configuration of webpack is in `./webpack.config.js`. The entrance of front-end code is in `./index.js`. Under the subdirectory `./src` there is a folder named `routes` which explains the route of the single-page application. The `component` folder contains the large bulk of the application such as the menu, navigation bar that is reusable. The `containers` includes some detail implementation that stores and manipulate data, and the `styled` are style component that consumes data and configure their style dynamically such as color, font size, and what kind of polar diagram to use.
+
+__Deployment__:
+The application is configured to run in heroku environment using the `procfile` and `package.json` file. A docker image can be created using `Dockerfile` and deployed on AWS server, which is an interesting task to do when resource is available.    
+
+## To be improved
+___Backend___
+In the server side, the authentication service is implemented but not integrated into the front-end. The real-time communication between users can be implemented by socket.io, which would allow users to cooperate on one project, and get notified when a shared project get updated.
+
+___Frontend___
+The react data flow can be improved by react-redux framework, which constructs a one-way data flow and manage the state in a better way.   
+
+___Scalability___
+For scalability purpose the application shall be configured to start and shut down as fast as possible. A Docker image can be created and deployed on AWS server. AWS service such as ElasticBeanstalk can provide service such as load balancing. Modules for building an distributed database system can be researched.
+
+## Bootstrap and deployment
+The website is about Overview/Add/List view in a single page app. The REST API is built using nodejs, express and mongo db.
 ### MongoDB deployment
 - Install MongoDB
 - For local deploy, create folder `C:\data\db` on windows, `/home/db` on linux
