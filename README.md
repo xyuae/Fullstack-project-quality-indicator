@@ -10,7 +10,7 @@ __Functional requirement__
 4.	Record the current status and history of the quality
 
 The application is deployed using Heroku at `https://express-quiality-indicator.herokuapp.com/#/`
-. The mongodb is not deployed yet due to account verification.
+. The mongodb is deployed in heroku using mongolab.
 
 ## Project Structure
 The quality management project is implemented in an 2 month period. The purpose is to build an web application that records and presents the project quality information. MERN stack is chosen for developing a front-end back-end separated, one page application, with a horizontally scalable database and backend.
