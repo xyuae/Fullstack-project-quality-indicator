@@ -57,7 +57,7 @@ export class App extends Component {
     api.updateProject(projectId, updatedProject).then(res => {
       let index = _.findIndex(allProjs, project => {
         return project['_id'] == res['_id'];
-      }); //remove
+      }); //updateProject
       allProjs[index] = res;
       this.setState({
         allProjects: allProjs

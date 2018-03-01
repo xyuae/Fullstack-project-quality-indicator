@@ -88,9 +88,7 @@ export class AddProjectForm extends Component{
   handleInputChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    //console.log(value);
     const name = target.name;
-    //console.log(this);
     this.setState({
       [name]: value
     });
@@ -98,7 +96,6 @@ export class AddProjectForm extends Component{
   handleSecondaryInputChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    //console.log(value);
     const name = target.name.split('.');
     let firstName = name[0];
     let secondName = name[1];
@@ -111,8 +108,6 @@ export class AddProjectForm extends Component{
   handleThirdLevelInputChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    //console.log(value);
-    //console.log(this.state);
     const name = target.name.split('.');
     let firstName = name[0];
     let secondName = name[1];
